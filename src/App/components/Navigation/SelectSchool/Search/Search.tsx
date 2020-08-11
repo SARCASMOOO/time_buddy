@@ -10,9 +10,9 @@ import { Layout } from "@elastic/react-search-ui-views";
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 
 const connector = new AppSearchAPIConnector({
-    searchKey: "search-371auk61r2bwqtdzocdgutmg",
+    searchKey: "iRIaFPzyTIm8taNlsZr1AXgj",
     engineName: "search-ui-examples",
-    hostIdentifier: "host-2376rb"
+    hostIdentifier: "elastic"
 });
 
 const Search = () => {

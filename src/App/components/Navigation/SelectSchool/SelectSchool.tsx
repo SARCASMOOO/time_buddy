@@ -8,7 +8,8 @@ function getModalStyle() {
     const top = 30;
     return {
         top: `${top}%`,
-        margin:'auto'
+        margin:'auto',
+        width: "400px"
     };
 }
 
@@ -16,7 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         paper: {
             position: 'absolute',
-            width: 400,
             backgroundColor: theme.palette.background.paper,
             border: '2px solid #000',
             boxShadow: theme.shadows[5],
@@ -59,7 +59,11 @@ export default function SelectSchool() {
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
-                style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+                style={{
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'center',
+                }}
             >
                 {body}
             </Modal>
