@@ -2,10 +2,7 @@ import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button } from '@material-ui/core';
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
+import Search from './Search/Search';
 
 function getModalStyle() {
     const top = 30;
@@ -48,6 +45,7 @@ export default function SelectSchool() {
             <p id="simple-modal-description">
                 Select your school.
             </p>
+            <Search/>
         </div>
     );
 
