@@ -8,13 +8,10 @@ function rand() {
 }
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
+    const top = 30;
     return {
         top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
+        margin:'auto'
     };
 }
 
@@ -47,9 +44,9 @@ export default function SelectSchool() {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
+            <h2 id="simple-modal-title">School</h2>
             <p id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Select your school.
             </p>
         </div>
     );
@@ -64,6 +61,7 @@ export default function SelectSchool() {
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
+                style={{display:'flex',alignItems:'center',justifyContent:'center'}}
             >
                 {body}
             </Modal>
