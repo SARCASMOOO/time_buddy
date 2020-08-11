@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             flexGrow: 1,
-        },
+        }
     }),
 );
 
@@ -37,7 +37,7 @@ const Navigation = ({}: Props) => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar style={{height: '100%'}} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <SideMenu> <MenuIcon/> </SideMenu>
