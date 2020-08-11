@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import SideMenu from "./SideMenu/SideMenu";
+import SelectSchool from "./SelectSchool/SelectSchool";
 
 // Interfaces
 interface Props {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             flexGrow: 1,
-        }
+        },
     }),
 );
 
@@ -37,7 +38,7 @@ const Navigation = ({}: Props) => {
 
     return (
         <div className={classes.root}>
-            <AppBar style={{height: '100%'}} position="static">
+            <AppBar style={{height: '100%', backgroundColor: '#02baa8'}} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <SideMenu> <MenuIcon/> </SideMenu>
@@ -45,7 +46,8 @@ const Navigation = ({}: Props) => {
                     <Typography variant="h6" className={classes.title}>
                         Logo
                     </Typography>
-                    <Button color="inherit">School</Button>
+                    <Button color="inherit" style={{width: '20vh', height: '100%'}}>Select School</Button>
+                    <SelectSchool/>
                 </Toolbar>
             </AppBar>
         </div>);
