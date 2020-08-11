@@ -41,16 +41,17 @@ const Navigation = ({}: Props) => {
             <AppBar style={{height: '100%', backgroundColor: '#02baa8'}} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <SideMenu> <MenuIcon/> </SideMenu>
+                        <SideMenu> <MenuIcon /> </ SideMenu >
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Logo
                     </Typography>
-                    <Button color="inherit" style={{width: '20vh', height: '100%'}}>Select School</Button>
-                    <SelectSchool/>
+                    <SelectSchool />
                 </Toolbar>
             </AppBar>
         </div>);
 }
 
 export default Navigation;
+
+

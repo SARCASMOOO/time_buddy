@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from "@material-ui/icons/Menu";
 
 type Anchor = 'left';
 
@@ -65,7 +66,9 @@ const SideMenu = ({children} : Props) => {
         <div>
             {(['left'] as Anchor[]).map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button style={{color: "white"}} onClick={toggleDrawer(anchor, true)}>{children}</Button>
+                    <Button style={{color: "white"}} onClick={toggleDrawer(anchor, true)}>
+                        {children}
+                    </Button>
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                         {list(anchor)}
                     </Drawer>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { Button } from '@material-ui/core';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -50,15 +51,14 @@ export default function SelectSchool() {
             <p id="simple-modal-description">
                 Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
-            <SelectSchool />
         </div>
     );
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                Open Modal
-            </button>
+            <Button onClick={handleOpen} style={{color: "white"}} variant="outlined">
+                Select School
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
