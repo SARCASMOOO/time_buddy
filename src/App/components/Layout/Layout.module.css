@@ -1,0 +1,9 @@
+:root {
+    /*font-family: 'Roboto', sans-serif;*/
+}
+
+.Layout {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 8fr 1fr;
+}
