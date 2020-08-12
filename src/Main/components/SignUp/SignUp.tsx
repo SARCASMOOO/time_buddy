@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Firebase, { FirebaseContext } from '../Firebase';
+import {Link, withRouter} from 'react-router-dom';
+import Firebase, { FirebaseContext, withFirebase } from '../Firebase';
+import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 
 const INITIAL_STATE = {
@@ -11,22 +12,28 @@ const INITIAL_STATE = {
     error: null,
 };
 
-
-
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
-        <FirebaseContext.Consumer>
-            {(firebase?: Firebase) => <SignUpForm firebase={firebase} />}
-        </FirebaseContext.Consumer>
+        <SignUpForm />
     </div>
 );
 
 interface Props {
-    firebase?: Firebase;
+    firebase: Firebase;
+    history: any;
 }
 
-class SignUpForm extends Component<Props, {}> {
+
+// TODO: Figure out how to have event.target.name as an item in the state interface.
+interface State {
+    username: string;
+    email: string;
+    passwordOne: string;
+    error: any;
+}
+
+class SignUpFormBase extends Component<Props, any> {
     constructor(props: Props) {
         super(props);
         this.state = { ...INITIAL_STATE };
@@ -34,12 +41,11 @@ class SignUpForm extends Component<Props, {}> {
 
     // TODO: Figure out what type an event should be.
     onSubmit = (event: any) => {
-        // @ts-ignore
         const { username, email, passwordOne } = this.state;
 
-        // @ts-ignore
         this.props.firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then((authUser: any) => {
+                this.props.history.push(ROUTES.HOME);
                 this.setState({ ...INITIAL_STATE });
             })
             .catch((error: any) => {
@@ -99,6 +105,11 @@ class SignUpForm extends Component<Props, {}> {
 }
 
 const SignUpLink = () => (<p>Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link></p>);
+
+const SignUpForm = compose<Props, any>(
+    withRouter,
+    withFirebase,
+)(SignUpFormBase);
 
 export default SignUpPage;
 
