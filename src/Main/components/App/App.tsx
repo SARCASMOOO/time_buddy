@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 
 // Components
-import Layout from "./components/Layout/Layout";
-import Navigation from "./components/Navigation/Navigation";
+import Layout from "../Layout/Layout";
+import Navigation from "../NavBar/Navigation";
 
 const App = () => <Layout>
     <Navigation />
