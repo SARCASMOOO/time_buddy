@@ -15,9 +15,7 @@ import SideMenu from "./SideMenu/SideMenu";
 import SelectSchool from "./SelectSchool/SelectSchool";
 
 // Interfaces
-interface Props {
-
-}
+interface Props {}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -46,7 +44,7 @@ const Navigation = ({}: Props) => {
                     <Typography variant="h6" className={classes.title}>
                         Logo
                     </Typography>
-                    <SelectSchool />
+                    <SelectSchool/>
                 </Toolbar>
             </AppBar>
         </div>);
