@@ -1,6 +1,10 @@
 import React, {ReactNode} from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+
+// Styles
+import {makeStyles} from '@material-ui/core/styles';
+
+// Components
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -11,6 +15,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from "@material-ui/icons/Menu";
+import {Link} from 'react-router-dom';
+
+// Constants
+import * as ROUTES from '../../../constants/routes';
 
 type Anchor = 'left';
 
@@ -18,7 +26,7 @@ interface Props {
     children: ReactNode;
 }
 
-const SideMenu = ({children} : Props) => {
+const SideMenu = ({children}: Props) => {
     const [state, setState] = React.useState({
         left: false,
     });
@@ -34,7 +42,7 @@ const SideMenu = ({children} : Props) => {
             return;
         }
 
-        setState({ ...state, [anchor]: open });
+        setState({...state, [anchor]: open});
     };
 
     const list = (anchor: Anchor) => (
@@ -45,19 +53,33 @@ const SideMenu = ({children} : Props) => {
             <List>
                 {['Time Buddy'].map((text, index) => (
                     <ListItem style={{width: '300px'}} button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                        <ListItemText primary={text}/>
                     </ListItem>
                 ))}
             </List>
             <Divider/>
             <List>
-                {['Sign In', 'Sign Up'].map((text, index) => (
-                    <ListItem style={{width: '300px'}} button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem component={Link} to={ROUTES.SIGN_IN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItemText primary='Sign In'/>
+                </ListItem>
+                <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItemText primary='Landing'/>
+                </ListItem>
+                <ListItem component={Link} to={ROUTES.HOME} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItemText primary='Home'/>
+                </ListItem>
+                <ListItem component={Link} to={ROUTES.ACCOUNT} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItemText primary='Account'/>
+                </ListItem>
+                <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItemText primary='Admin'/>
+                </ListItem>
             </List>
         </div>
     );
