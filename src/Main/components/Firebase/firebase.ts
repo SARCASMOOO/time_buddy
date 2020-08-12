@@ -1,4 +1,3 @@
-import React from 'react';
 import app from 'firebase/app';
 
 const firebaseConfig = {
