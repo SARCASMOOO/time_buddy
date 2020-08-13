@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 
-// HOC
-import Firebase, {withFirebase} from '../Firebase';
-
-// Context
-import {AuthUserContext} from '../Session';
-
 // Components
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import LandingPage from '../Landing/Landing';
@@ -21,47 +15,14 @@ import Navigation from "../Navigation/Navigation";
 
 // Constants
 import * as ROUTES from '../../constants/routes';
+import withAuthentication from "../Session/withAuthentication";
 
-interface Props {
-    firebase: Firebase;
-}
-
-// TODO: Change this when you figure out what type authUser is.
-interface State {
-    authUser: any;
-    listener: firebase.Unsubscribe | undefined;
-}
+interface Props {}
+interface State {}
 
 class App extends Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            authUser: undefined,
-            listener: undefined
-        };
-    }
-
-    componentDidMount() {
-        const listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-            authUser
-                ? this.setState({authUser})
-                : this.setState({authUser: null});
-        });
-
-        this.setState({listener: listener});
-    }
-
-    componentWillUnmount() {
-        const listener = this.state.listener;
-
-        if (listener) listener();
-    }
-
     render() {
         return (
-            <AuthUserContext.Provider value={this.state.authUser}>
                 <Layout>
                     <Router>
                         <Navigation/>
@@ -79,9 +40,8 @@ class App extends Component<Props, State> {
                         <footer>This is the footer</footer>
                     </Router>
                 </Layout>
-            </AuthUserContext.Provider>
         );
     }
 }
 
-export default withFirebase(App);
+export default withAuthentication(App);
