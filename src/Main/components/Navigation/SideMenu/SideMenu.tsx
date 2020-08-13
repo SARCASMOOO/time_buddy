@@ -16,6 +16,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from "@material-ui/icons/Menu";
 import {Link} from 'react-router-dom';
+import SignOutButton from '../../SignOut/SignOut';
 
 // Constants
 import * as ROUTES from '../../../constants/routes';
@@ -79,6 +80,9 @@ const SideMenu = ({children}: Props) => {
                 <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
                     <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
                     <ListItemText primary='Admin'/>
+                </ListItem>
+                <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+                    <SignOutButton/>
                 </ListItem>
             </List>
         </div>
