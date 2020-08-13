@@ -20,6 +20,8 @@ import withAuthentication from "../Session/withAuthentication";
 interface Props {}
 interface State {}
 
+// TODO: Fix Burger Icon, only opens side drawer if clicked in middle.
+
 class App extends Component<Props, State> {
     render() {
         return (

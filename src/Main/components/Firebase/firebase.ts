@@ -32,7 +32,7 @@ class Firebase {
     doPasswordUpdate = (password: string) => {
         const currentUser = this.auth.currentUser;
 
-        if(currentUser) currentUser.updatePassword(password).then(r => null);
+        if(currentUser) return currentUser.updatePassword(password);
     }
 }
 

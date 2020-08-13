@@ -2,6 +2,8 @@ import React, {ChangeEvent, Component, FormEvent} from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp/SignUp';
+import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
+
 import Firebase, { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
@@ -83,6 +85,8 @@ class SignInFormBase extends Component<Props, State> {
                 <button disabled={isInvalid} type="submit">
                     Sign In
                 </button>
+
+                <PasswordForgetLink/>
 
                 {error && <p>{error.message}</p>}
             </form>
