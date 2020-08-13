@@ -1,7 +1,7 @@
-import React, {ComponentClass, ComponentType} from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
+import AuthUserContext from './context';
 import Firebase, { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
@@ -36,7 +36,11 @@ const withAuthorization = (condition:any) => (Component: React.ElementType) => {
 
         render() {
             return (
-                <Component {...this.props} />
+                <AuthUserContext.Consumer>
+                    {authUser =>
+                        condition(authUser) ? <Component {...this.props} /> : null
+                    }
+                </AuthUserContext.Consumer>
             );
         }
     }
