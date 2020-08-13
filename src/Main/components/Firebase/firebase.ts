@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 class Firebase {
-    private auth: firebase.auth.Auth;
+    auth: firebase.auth.Auth;
 
     constructor() {
         app.initializeApp(firebaseConfig);

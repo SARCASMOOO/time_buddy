@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, Fragment} from 'react';
 import clsx from 'clsx';
 
 // Styles
@@ -16,18 +16,20 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from "@material-ui/icons/Menu";
 import {Link} from 'react-router-dom';
-import SignOutButton from '../../SignOut/SignOut';
 
 // Constants
 import * as ROUTES from '../../../constants/routes';
+import Firebase, {withFirebase} from "../../Firebase";
 
 type Anchor = 'left';
 
 interface Props {
     children: ReactNode;
+    authUser: any;
+    firebase: Firebase;
 }
 
-const SideMenu = ({children}: Props) => {
+const SideMenu = ({children, firebase, authUser}: Props) => {
     const [state, setState] = React.useState({
         left: false,
     });
@@ -61,29 +63,7 @@ const SideMenu = ({children}: Props) => {
             </List>
             <Divider/>
             <List>
-                <ListItem component={Link} to={ROUTES.SIGN_IN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                    <ListItemText primary='Sign In'/>
-                </ListItem>
-                <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                    <ListItemText primary='Landing'/>
-                </ListItem>
-                <ListItem component={Link} to={ROUTES.HOME} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                    <ListItemText primary='Home'/>
-                </ListItem>
-                <ListItem component={Link} to={ROUTES.ACCOUNT} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                    <ListItemText primary='Account'/>
-                </ListItem>
-                <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                    <ListItemText primary='Admin'/>
-                </ListItem>
-                <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
-                    <SignOutButton/>
-                </ListItem>
+                {authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth />}
             </List>
         </div>
     );
@@ -91,17 +71,68 @@ const SideMenu = ({children}: Props) => {
     return (
         <div>
             {(['left'] as Anchor[]).map((anchor) => (
-                <React.Fragment key={anchor}>
+                <Fragment key={anchor}>
                     <Button style={{color: "white"}} onClick={toggleDrawer(anchor, true)}>
                         {children}
                     </Button>
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                         {list(anchor)}
                     </Drawer>
-                </React.Fragment>
+                </Fragment>
             ))}
         </div>
     );
 }
 
-export default SideMenu;
+interface NavProps {
+    firebase: Firebase;
+}
+
+const NavigationAuth = ({firebase}: NavProps) => (
+    <Fragment>
+        <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.LANDING}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Landing'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.HOME} style={{width: '300px'}} button key={ROUTES.HOME}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Home'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.ACCOUNT} style={{width: '300px'}} button key={ROUTES.ACCOUNT}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Account'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.LANDING}
+                  style={{width: '300px'}}
+                  button
+                  key={ROUTES.LANDING}
+                  onClick={firebase.doSignOut}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Sign Out'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.ADMIN} style={{width: '300px'}} button key={ROUTES.ADMIN}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Admin'/>
+        </ListItem>
+    </Fragment>
+);
+
+const NavigationNonAuth = () => (
+    <Fragment>
+        <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.LANDING}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Landing'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.SIGN_IN} style={{width: '300px'}} button key={ROUTES.SIGN_IN}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Sign In'/>
+        </ListItem>
+        <ListItem component={Link} to={ROUTES.SIGN_UP} style={{width: '300px'}} button key={ROUTES.SIGN_UP}>
+            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+            <ListItemText primary='Sign Up'/>
+        </ListItem>
+    </Fragment>
+);
+
+
+export default withFirebase(SideMenu);

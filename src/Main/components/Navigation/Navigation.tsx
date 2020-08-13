@@ -15,7 +15,9 @@ import SideMenu from "./SideMenu/SideMenu";
 import SelectSchool from "./SelectSchool/SelectSchool";
 
 // Interfaces
-interface Props {}
+interface Props {
+    authUser: any;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Navigation = ({}: Props) => {
+const Navigation = ({authUser}: Props) => {
     const classes = useStyles();
 
     return (
@@ -39,7 +41,7 @@ const Navigation = ({}: Props) => {
             <AppBar style={{height: '100%', backgroundColor: '#02baa8'}} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <SideMenu> <MenuIcon /> </ SideMenu >
+                        <SideMenu authUser={authUser}> <MenuIcon /> </ SideMenu >
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Logo
