@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 
 // HOC
-import Firebase, { withFirebase } from '../Firebase';
+import Firebase, {withFirebase} from '../Firebase';
+
+// Context
+import {AuthUserContext} from '../Session';
 
 // Components
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -26,7 +29,7 @@ interface Props {
 // TODO: Change this when you figure out what type authUser is.
 interface State {
     authUser: any;
-    listener:  firebase.Unsubscribe | undefined;
+    listener: firebase.Unsubscribe | undefined;
 }
 
 class App extends Component<Props, State> {
@@ -43,8 +46,8 @@ class App extends Component<Props, State> {
     componentDidMount() {
         const listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
             authUser
-                ? this.setState({ authUser })
-                : this.setState({ authUser: null });
+                ? this.setState({authUser})
+                : this.setState({authUser: null});
         });
 
         this.setState({listener: listener});
@@ -56,27 +59,27 @@ class App extends Component<Props, State> {
         if (listener) listener();
     }
 
-
     render() {
         return (
-            <Layout>
-                <Router>
-                    <Navigation authUser={this.state.authUser} />
-
-                    <main>
-                        <Switch>
-                            <Route exact path={ROUTES.LANDING} component={LandingPage}/>
-                            <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-                            <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
-                            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
-                            <Route path={ROUTES.HOME} component={HomePage}/>
-                            <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
-                            <Route path={ROUTES.ADMIN} component={AdminPage}/>
-                        </Switch>
-                    </main>
-                    <footer>This is the footer</footer>
-                </Router>
-            </Layout>
+            <AuthUserContext.Provider value={this.state.authUser}>
+                <Layout>
+                    <Router>
+                        <Navigation/>
+                        <main>
+                            <Switch>
+                                <Route exact path={ROUTES.LANDING} component={LandingPage}/>
+                                <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
+                                <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
+                                <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
+                                <Route path={ROUTES.HOME} component={HomePage}/>
+                                <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
+                                <Route path={ROUTES.ADMIN} component={AdminPage}/>
+                            </Switch>
+                        </main>
+                        <footer>This is the footer</footer>
+                    </Router>
+                </Layout>
+            </AuthUserContext.Provider>
         );
     }
 }

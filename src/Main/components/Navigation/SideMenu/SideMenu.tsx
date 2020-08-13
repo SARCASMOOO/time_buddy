@@ -14,12 +14,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from "@material-ui/icons/Menu";
 import {Link} from 'react-router-dom';
 
 // Constants
 import * as ROUTES from '../../../constants/routes';
 import Firebase, {withFirebase} from "../../Firebase";
+import AuthUserContext from '../../Session/context';
 
 type Anchor = 'left';
 
@@ -63,7 +63,11 @@ const SideMenu = ({children, firebase, authUser}: Props) => {
             </List>
             <Divider/>
             <List>
-                {authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth />}
+                <AuthUserContext.Consumer>
+                    {authUser =>
+                        authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth />
+                    }
+                </AuthUserContext.Consumer>
             </List>
         </div>
     );
