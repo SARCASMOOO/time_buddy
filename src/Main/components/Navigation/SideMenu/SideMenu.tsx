@@ -55,8 +55,8 @@ const SideMenu = ({children, firebase, authUser}: Props) => {
             onKeyDown={toggleDrawer(anchor, false)}>
             <List>
                 {['Time Buddy'].map((text, index) => (
-                    <ListItem style={{width: '300px'}} button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                    <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.LANDING}>
+                        <ListItemIcon>{<MailIcon/>}</ListItemIcon>
                         <ListItemText primary={text}/>
                     </ListItem>
                 ))}
@@ -65,7 +65,7 @@ const SideMenu = ({children, firebase, authUser}: Props) => {
             <List>
                 <AuthUserContext.Consumer>
                     {authUser =>
-                        authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth />
+                        authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth/>
                     }
                 </AuthUserContext.Consumer>
             </List>
@@ -94,10 +94,6 @@ interface NavProps {
 
 const NavigationAuth = ({firebase}: NavProps) => (
     <Fragment>
-        <ListItem component={Link} to={ROUTES.LANDING} style={{width: '300px'}} button key={ROUTES.LANDING}>
-            <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-            <ListItemText primary='Landing'/>
-        </ListItem>
         <ListItem component={Link} to={ROUTES.HOME} style={{width: '300px'}} button key={ROUTES.HOME}>
             <ListItemIcon>{0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
             <ListItemText primary='Home'/>
