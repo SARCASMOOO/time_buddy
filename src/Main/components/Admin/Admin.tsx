@@ -97,25 +97,3 @@ const UserList = ({users}: UserListProps) => {
 }
 
 export default withFirebase(AdminPage);
-
-
-// <AccordionDetails>
-// <Typography>
-// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-// sit amet blandit leo lobortis eget.
-// </Typography>
-// </AccordionDetails>
-
-
-// <li key={user.uid}>
-// <span>
-//   <strong>ID:</strong> {user.uid}
-// </span>
-// <span>
-//   <strong>E-Mail:</strong> {user.email}
-// </span>
-// <span>
-//   <strong>Username:</strong> {user.username}
-// </span>
-// </li>
-// ))}

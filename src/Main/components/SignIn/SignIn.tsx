@@ -1,18 +1,21 @@
 import React, {ChangeEvent, Component, FormEvent} from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import { SignUpLink } from '../SignUp/SignUp';
-import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
+import {withRouter} from 'react-router-dom';
+import {compose} from 'recompose';
+import {SignUpLink} from '../SignUp/SignUp';
+import {PasswordForgetForm, PasswordForgetLink} from '../PasswordForget/PasswordForget';
 
-import Firebase, { withFirebase } from '../Firebase';
+import Firebase, {withFirebase} from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import {Button, Card, FormControl, Input} from "@material-ui/core";
+import PasswordChangeForm from "../PasswordChange/PasswordChange";
 
 const SignInPage = () => (
-    <div>
-        <h1>SignIn</h1>
-        <SignInForm />
-        <SignUpLink />
-    </div>
+    <Card style={{margin: '5vh', padding: '25px', height: '80vh'}}>
+            <h1>Sign In</h1>
+            <SignInForm/>
+            <SignUpLink/>
+    </Card>
+
 );
 
 const INITIAL_STATE = {
@@ -37,20 +40,20 @@ class SignInFormBase extends Component<Props, State> {
     constructor(props: any) {
         super(props);
 
-        this.state = { ...INITIAL_STATE };
+        this.state = {...INITIAL_STATE};
     }
 
-    onSubmit = (event:React.FormEvent) => {
-        const { email, password } = this.state;
+    onSubmit = (event: React.FormEvent) => {
+        const {email, password} = this.state;
 
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
+                this.setState({...INITIAL_STATE});
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
-                this.setState({ error });
+                this.setState({error});
             });
 
         event.preventDefault();
@@ -58,38 +61,50 @@ class SignInFormBase extends Component<Props, State> {
 
     onChange = (event: React.ChangeEvent) => {
         // @ts-ignore
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({[event.target.name]: event.target.value});
     };
 
     render() {
-        const { email, password, error } = this.state;
+        const {email, password, error} = this.state;
 
         const isInvalid = password === '' || email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
+            <FormControl style={{display: 'flex', flexDirection: 'column', width: '40%', marginLeft: '25px', marginTop: '50px'}}>
+                <Input id="user-email"
+                       name="email"
+                       value={email}
+                       onChange={this.onChange}
+                       type="text"
+                       placeholder="Email Address"
                 />
-                <input
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
+
+                <Input id="user-password"
+                       name="password"
+                       value={password}
+                       onChange={this.onChange}
+                       type="password"
+                       placeholder="Password"
+                       style={{marginTop: '25px'}}
                 />
-                <button disabled={isInvalid} type="submit">
+
+                <Button
+                    style={{width: '200px', marginTop: '20px'}}
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={this.onSubmit}
+                    disabled={isInvalid}
+                >
                     Sign In
-                </button>
+                </Button>
+
 
                 <PasswordForgetLink/>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </FormControl>
         );
     }
 }
@@ -101,4 +116,6 @@ const SignInForm = compose(
 
 export default SignInPage;
 
-export { SignInForm };
+export {SignInForm};
+
+
