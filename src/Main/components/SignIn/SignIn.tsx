@@ -10,12 +10,11 @@ import {Button, Card, FormControl, Input} from "@material-ui/core";
 import PasswordChangeForm from "../PasswordChange/PasswordChange";
 
 const SignInPage = () => (
-    <Card style={{margin: '5vh', padding: '25px', height: '80vh'}}>
+
+        <Card style={{margin: '5vh', padding: '25px', height: '80vh',display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <h1>Sign In</h1>
             <SignInForm/>
-            <SignUpLink/>
-    </Card>
-
+        </Card>
 );
 
 const INITIAL_STATE = {
@@ -70,7 +69,8 @@ class SignInFormBase extends Component<Props, State> {
         const isInvalid = password === '' || email === '';
 
         return (
-            <FormControl style={{display: 'flex', flexDirection: 'column', width: '40%', marginLeft: '25px', marginTop: '50px'}}>
+            <FormControl
+                style={{display: 'flex', flexDirection: 'column', width: '40%', marginLeft: '25px', marginTop: '50px'}}>
                 <Input id="user-email"
                        name="email"
                        value={email}
@@ -102,7 +102,7 @@ class SignInFormBase extends Component<Props, State> {
 
 
                 <PasswordForgetLink/>
-
+                <SignUpLink/>
                 {error && <p>{error.message}</p>}
             </FormControl>
         );
