@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Firebase, {withFirebase} from '../Firebase';
+import {Button, FormControl, Input, InputLabel} from "@material-ui/core";
 
 const INITIAL_STATE = {
     passwordOne: '',
@@ -48,31 +49,48 @@ class PasswordChangeForm extends Component<Props, State> {
     render() {
         const {passwordOne, passwordTwo, error} = this.state;
 
-        const isInvalid =
-            passwordOne !== passwordTwo || passwordOne === '';
+        const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="New Password"
-                />
-                <input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm New Password"
-                />
-                <button disabled={isInvalid} type="submit">
+            <div style={{marginLeft: '25px', marginTop: '10%'}}>
+                <h2>Change Password</h2>
+                <div style={{display: 'flex', flexDirection: 'row', width: 'auto'}}>
+                    <FormControl>
+                        <Input name="passwordOne"
+                               id="new-password"
+                               value={passwordOne}
+                               onChange={this.onChange}
+                               type="password"
+                               placeholder="New Password"
+                               style={{marginRight: '20px'}}
+                        />
+                    </FormControl>
+
+                    <FormControl>
+                        <Input name="passwordTwo"
+                               id="old-password"
+                               value={passwordTwo}
+                               onChange={this.onChange}
+                               type="password"
+                               placeholder="Confirm New Password"
+                        />
+                    </FormControl>
+                </div>
+                <Button
+                    style={{width: '200px', marginTop: '20px'}}
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={this.onSubmit}
+                    disabled={isInvalid}
+                >
                     Reset My Password
-                </button>
+                </Button>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </div>
+
         );
     }
 }

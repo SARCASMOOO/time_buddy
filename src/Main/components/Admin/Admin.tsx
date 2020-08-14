@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 
-import Firebase, { withFirebase } from '../Firebase';
+import Firebase, {withFirebase} from '../Firebase';
+import {Accordion, AccordionDetails, AccordionSummary, CircularProgress, Typography} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface Props {
     firebase: Firebase;
@@ -22,13 +24,13 @@ class AdminPage extends Component<Props, State> {
     }
 
     componentDidMount() {
-        this.setState({ loading: true });
+        this.setState({loading: true});
 
         // @ts-ignore
         this.props.firebase.users().on('value', snapshot => {
             const usersObject = snapshot.val();
 
-            if(usersObject) {
+            if (usersObject) {
                 const usersList = Object.keys(usersObject).map(key => ({
                     ...usersObject[key],
                     uid: key,
@@ -54,15 +56,12 @@ class AdminPage extends Component<Props, State> {
     }
 
     render() {
-        const { users, loading } = this.state;
+        const {users, loading} = this.state;
 
         return (
             <div>
                 <h1>Admin</h1>
-
-                {loading && <div>Loading ...</div>}
-
-                <UserList users={users} />
+                {loading ? <CircularProgress />: <UserList users={users}/>}
             </div>
         );
     }
@@ -72,22 +71,51 @@ interface UserListProps {
     users: [];
 }
 
-const UserList = ({users} : UserListProps) => {
-    return (<ul>
-        {users.map((user: any) => (
-            <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-                <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-                <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-            </li>
-        ))}
-    </ul>);
+const UserList = ({users}: UserListProps) => {
+    const output = users.map((user: any) => (
+        <Accordion>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header">
+                <Typography>Email: {user.email}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Typography>
+                    <span>ID: {user.uid}</span>
+                    <span style={{display: 'block', marginTop: '15px'}}>Username: {user.username}</span>
+                </Typography>
+            </AccordionDetails>
+        </Accordion>
+    ))
+
+    return (
+        <div>
+            <h3>Users List</h3>
+            {output}
+        </div>);
 }
 
 export default withFirebase(AdminPage);
+
+
+// <AccordionDetails>
+// <Typography>
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+// sit amet blandit leo lobortis eget.
+// </Typography>
+// </AccordionDetails>
+
+
+// <li key={user.uid}>
+// <span>
+//   <strong>ID:</strong> {user.uid}
+// </span>
+// <span>
+//   <strong>E-Mail:</strong> {user.email}
+// </span>
+// <span>
+//   <strong>Username:</strong> {user.username}
+// </span>
+// </li>
+// ))}
