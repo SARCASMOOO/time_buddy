@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import firebase from 'firebase';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDZ5YJomxPVeXOjWU3eW01tQNulMG3gPpw",
@@ -14,12 +15,14 @@ const firebaseConfig = {
 
 class Firebase {
     private db: firebase.database.Database;
+    private fs: firebase.firestore.DocumentData;
     auth: firebase.auth.Auth;
 
     constructor() {
         app.initializeApp(firebaseConfig);
         this.auth = app.auth();
         this.db = app.database();
+        this.fs = firebase.firestore();
     }
 
     // *** Auth API ***
@@ -40,6 +43,33 @@ class Firebase {
     user = (uid: string) => this.db.ref(`users/${uid}`);
 
     users = (uid: string) => this.db.ref('users');
+
+    // *** School Search Api ***
+    loadOptions = async (inputValue: any) => {
+        inputValue = inputValue.toLowerCase().replace(/\W/g, "");
+        return new Promise((resolve => {
+                this.fs.collection('Tag')
+                    .orderBy('plainName')
+                    .startAt(inputValue)
+                    .endAt(inputValue + "\uf8ff")
+                    .get()
+                    .then((docs: any) => {
+                        if (!docs.empty) {
+                            let recommendedTags: any = []
+                            docs.forEach(function (doc: { id: any; data: () => { (): any; new(): any; tagName: any; }; }) {
+                                const tag = {
+                                    value: doc.id,
+                                    label: doc.data().tagName
+                                }
+                                recommendedTags.push(tag)
+                            });
+                            return resolve(recommendedTags)
+                        } else {
+                            return resolve([])
+                        }
+                    })
+            }));
+    }
 }
 
 export default Firebase;
