@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button } from '@material-ui/core';
@@ -32,7 +32,9 @@ interface Props {
 const SelectSchool = () => {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [schoolSearch, setSchool] = useState<any>({selectedSchool: null});
+
 
     const handleOpen = () => {setOpen(true);};
 
@@ -44,14 +46,20 @@ const SelectSchool = () => {
             <p id="simple-modal-description">
                 Select your school.
             </p>
-            <Search/>
+            <Search isSearchOpen={setOpen} school={schoolSearch} setSchool={setSchool}/>
         </div>
     );
 
+    let schoolText = 'Select School';
+    if(schoolSearch && schoolSearch.school) {
+        schoolText = schoolSearch.school.label;
+    }
+
     return (
         <div>
+
             <Button onClick={handleOpen} style={{color: "white"}} variant="outlined">
-                Select School
+                {schoolText}
             </Button>
             <Modal
                 open={open}

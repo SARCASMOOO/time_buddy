@@ -7,16 +7,19 @@ import * as ROUTES from "../../../../constants/routes";
 
 interface Props {
     firebase: Firebase;
-    isSearchOpen: boolean;
+    isSearchOpen: (isOpen: boolean) => void;
+    setSchool: any;
+    school: any;
 }
 
 const SearchBase = (props: Props) => {
-    const [school, setSchool] = useState<any>({selectedSchool: []});
 
     const handleOnChange = (tags: any) => {
-        setSchool({
+        props.setSchool({
             school: tags
         })
+
+        props.isSearchOpen(false);
     }
 
     return (
