@@ -7,14 +7,15 @@ import * as ROUTES from "../../../../constants/routes";
 
 interface Props {
     firebase: Firebase;
+    isSearchOpen: boolean;
 }
 
 const SearchBase = (props: Props) => {
-    const [state, setState] = useState({selectedTag: []});
+    const [school, setSchool] = useState<any>({selectedSchool: []});
 
     const handleOnChange = (tags: any) => {
-        setState({
-            selectedTag: tags
+        setSchool({
+            school: tags
         })
     }
 
@@ -24,16 +25,6 @@ const SearchBase = (props: Props) => {
                 loadOptions={props.firebase.loadOptions}
                 onChange={handleOnChange}
             />
-            <p>Selected Tag:</p>
-            {
-                state.selectedTag.map((e: any) => {
-                    return (
-                        <li key={e.value}>
-                            {e.label}
-                        </li>
-                    )
-                })
-            }
         </div>
     );
 }

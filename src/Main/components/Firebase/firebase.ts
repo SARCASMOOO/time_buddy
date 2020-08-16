@@ -46,6 +46,7 @@ class Firebase {
 
     // *** School Search Api ***
     loadOptions = async (inputValue: any) => {
+        console.log('I am in the firebase load option function.')
         inputValue = inputValue.toLowerCase().replace(/\W/g, "");
         return new Promise((resolve => {
                 this.fs.collection('Tag')
