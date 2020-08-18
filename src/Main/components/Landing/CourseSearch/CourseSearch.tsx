@@ -1,7 +1,8 @@
 import React from "react";
 import styles from './CourseSearch.module.css';
-import {List, ListItem, ListItemText} from '@material-ui/core';
+import {List} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
+import Course from "./Course/Course";
 
 const useStyles = makeStyles({
     CourseSearch: {
@@ -14,69 +15,9 @@ const CourseSearch = () => {
     const classes = useStyles();
 
     return (
-        <>
-        <h1>Courses Header</h1>
-        <List component="nav" aria-label="secondary mailbox folders" className={classes.CourseSearch}>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>            <ListItem button>
-            <ListItemText primary="Inbox"/>
-        </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>            <ListItem button>
-            <ListItemText primary="Inbox"/>
-        </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Inbox"/>
-            </ListItem>
-        </List>
-            </>);
+        <List disablePadding aria-label="secondary mailbox folders" className={classes.CourseSearch}>
+            <Course/>
+        </List>);
 }
 
 export default CourseSearch;
