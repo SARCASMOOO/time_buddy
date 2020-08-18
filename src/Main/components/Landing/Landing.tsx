@@ -34,7 +34,7 @@ const Landing = () => {
     const classesCard = useStylesCard();
     const cardStyles = useCardStyles();
     return (<>
-        <h1>Landing</h1>
+        <h1>Schedules</h1>
         <div className={classes.Landing}>
             <TimeTables/>
             <Card variant="outlined" classes={cardStyles}>
