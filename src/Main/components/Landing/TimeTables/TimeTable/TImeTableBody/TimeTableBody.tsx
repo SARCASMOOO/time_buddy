@@ -3,25 +3,16 @@ import {Table, TableBody, TableCell, TableRow} from "@material-ui/core";
 import moment from "moment";
 import {keys} from "@material-ui/core/styles/createBreakpoints";
 
-interface Event {
-    id: String;
-    title: String;
-    startTime: any;
-    endTime: any;
-}
-
-interface Week {
-    'Saturday': Event[];
-    // 'Sunday'?: Event[];
-    // 'Monday'?: Event[];
-    // 'Tuesday'?: Event;
-    // 'Wednesday'?: Event[];
-    // 'Thursday'?: Event[];
-    // 'Friday'?: Event[];
+export interface Event {
+    id: string;
+    title: string;
+    startTime: string;
+    endTime: string;
+    day: WeekIndex | [WeekIndex, WeekIndex];
 }
 
 interface Props {
-    week: Week;
+    events: Event[];
 }
 
 enum WeekIndex {
@@ -34,26 +25,12 @@ enum WeekIndex {
     'Friday'
 }
 
-const createRow = (week: Week) => {
-    return (<TableRow>
-        <TableCell align='center'>7:00</TableCell>
-        {Object.keys(week).map((day: string) => {
-            // @ts-ignore
-            // const result = week[day];
-            // if (result && index < result.length && index >= 0) {
-            //     const event = result[index];
-            //     return (<TableCell align='center'>{event.title}</TableCell>);
-            // }
-            return null;
-        })}
-    </TableRow>);
-}
-const TimeTableBody = ({week}: Props) => {
+
+const TimeTableBody = ({events}: Props) => {
     let index = 0;
 
     return (
         <TableBody>
-            {createRow(week)}
         </TableBody>
     );
 }
