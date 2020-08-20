@@ -1,19 +1,12 @@
 import React from 'react';
-import {TableCell, TableHead, TableRow} from "@material-ui/core";
+import TimeTableCell from '../TimeTableCell/TimeTableCell';
+import classes from './TimeTableHeader.module.css';
+const headers = ['Time', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const TimeTableHeader = () => (
-    <TableHead>
-        <TableRow>
-            <TableCell align='center'>TIME</TableCell>
-            <TableCell align='center'>Sunday</TableCell>
-            <TableCell align='center'>Monday</TableCell>
-            <TableCell align='center'>Tuesday</TableCell>
-            <TableCell align='center'>Wednesday</TableCell>
-            <TableCell align='center'>Thursday</TableCell>
-            <TableCell align='center'>Friday</TableCell>
-            <TableCell align='center'>Saturday</TableCell>
-        </TableRow>
-    </TableHead>
+    <div className={classes.TimeTableHeader}>
+        {headers.map((header: string) => <TimeTableCell text={header}/>)}
+    </div>
 );
 
 export default TimeTableHeader;

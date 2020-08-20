@@ -1,0 +1,7 @@
+.TimeTable {
+    min-width: 400px;
+    min-height: 400px;
+    display: grid;
+    grid-template-rows: 1fr 8fr 1fr;
+    border: black 1px solid;
+}

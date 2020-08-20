@@ -1,0 +1,6 @@
+.TimeTableBody {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: black 1px solid;
+}

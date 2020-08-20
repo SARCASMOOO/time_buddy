@@ -1,0 +1,8 @@
+.TimeTableHeader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: rgb(2, 186, 168);
+    color: white;
+    border-bottom: black 1px solid;
+}

@@ -10,10 +10,6 @@ interface State {
 }
 
 class TimeTables extends Component<Props, State> {
-    constructor(props: {}) {
-        super(props);
-    }
-
     render() {
         return (<div style={{width: '800px', height: '600px'}}>
             <Timetable />
