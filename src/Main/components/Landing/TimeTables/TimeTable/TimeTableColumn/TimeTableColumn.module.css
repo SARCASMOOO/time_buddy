@@ -1,5 +1,7 @@
 .TimeTableColumn {
     display: flex;
+    font-size: x-small;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;

@@ -2,11 +2,16 @@ import React from 'react';
 import TimeTableColumn from '../TimeTableColumn/TimeTableColumn';
 import classes from './TimeTableBody.module.css';
 
-const headers = ['Time', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const headers = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-const TimeTableBody = () => (
+interface Props {
+    events: any[];
+}
+
+const TimeTableBody = ({events}: Props) => (
     <div className={classes.TimeTableBody}>
-        {headers.map(() => <TimeTableColumn/>)}
+        <TimeTableColumn events={events} isTime  />
+        {headers.map(() => <TimeTableColumn events={events} />)}
     </div>
 )
 
