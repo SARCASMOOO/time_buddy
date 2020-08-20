@@ -11,7 +11,7 @@ interface State {
 
 class TimeTables extends Component<Props, State> {
     render() {
-        return (<div style={{width: '800px', height: '600px'}}>
+        return (<div style={{width: '85%'}}>
             <Timetable />
         </div>);
     }

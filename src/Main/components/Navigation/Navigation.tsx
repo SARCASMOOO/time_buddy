@@ -41,7 +41,7 @@ const Navigation = ({}: Props) => {
                         <SideMenu> <MenuIcon /> </ SideMenu >
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        Logo
+                        Time Buddy
                     </Typography>
                     <SelectSchool/>
                 </Toolbar>

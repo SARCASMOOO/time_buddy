@@ -20,8 +20,6 @@ import withAuthentication from "../Session/withAuthentication";
 interface Props {}
 interface State {}
 
-// TODO: Fix Burger Icon, only opens side drawer if clicked in middle.
-
 class App extends Component<Props, State> {
     render() {
         return (
@@ -30,16 +28,16 @@ class App extends Component<Props, State> {
                         <Navigation/>
                         <main>
                             <Switch>
-                                <Route exact path={ROUTES.LANDING} component={LandingPage}/>
                                 <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
                                 <Route path={ROUTES.SIGN_IN} component={SignInPage}/>
                                 <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
                                 <Route path={ROUTES.HOME} component={HomePage}/>
                                 <Route path={ROUTES.ACCOUNT} component={AccountPage}/>
                                 <Route path={ROUTES.ADMIN} component={AdminPage}/>
+                                <Route path={ROUTES.LANDING} component={LandingPage}/>
                             </Switch>
                         </main>
-                        <footer>This is the footer</footer>
+                        <footer style={{backgroundColor: '#02baa8'}} />
                     </Router>
                 </Layout>
         );
