@@ -3,6 +3,7 @@ import moment from "moment";
 import classes from './TimeTable.module.css';
 import TimeTableHeader from "./TimeTableHeader/TimeTableHeader";
 import TimeTableBody from './TimeTableBody/TimeTableBody';
+import TimeTableFooter from "./TimeTableFooter/TImeTableFooter";
 
 const events = [
     {
@@ -19,7 +20,7 @@ const TimeTable = () => {
         <div className={classes.TimeTable}>
             <TimeTableHeader/>
             <TimeTableBody events={events}/>
-            <div style={{backgroundColor: 'cyan'}}>3</div>
+            <TimeTableFooter/>
         </div>
     )
 };
