@@ -1,5 +1,6 @@
 .TimeTableColumn {
     display: flex;
+    position: relative;
     font-size: x-small;
     flex-direction: column;
     justify-content: center;

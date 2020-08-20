@@ -1,6 +1,7 @@
 import React from "react";
 import classes from './TimeTableColumn.module.css';
 import TimeTableCell from "../TimeTableCell/TimeTableCell";
+import DrawCourses from '../DrawCourses/DrawCourses';
 
 interface Props {
     events: any[];
@@ -22,6 +23,7 @@ const TimeTableColumn = ({events, isTime}: Props) => {
     } else {
         return <div className={classes.TimeTableColumn}>
             {timeIntervals.map((time) => <TimeTableCell/>)}
+            <DrawCourses/>
         </div>;
     }
 }
