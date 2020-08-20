@@ -9,8 +9,8 @@ const events = [
     {
         id: '1',
         title: 'COMP 4001',
-        startTime: moment().calendar(),
-        endTime: moment().add(1, 'hour').calendar(),
+        startTime: '9:00 AM',
+        endTime: '9:00 PM',
         day: 'Saturday'
     }
 ];

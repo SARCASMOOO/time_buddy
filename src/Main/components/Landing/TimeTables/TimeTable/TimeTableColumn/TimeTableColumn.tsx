@@ -3,9 +3,12 @@ import classes from './TimeTableColumn.module.css';
 import TimeTableCell from "../TimeTableCell/TimeTableCell";
 import DrawCourses from '../DrawCourses/DrawCourses';
 
+import { Event } from '../TimeTableBody/TimeTableBody';
+
 interface Props {
-    events: any[];
+    events: Event[];
     isTime?: boolean;
+    day: string;
 }
 
 const timeIntervals = ['7:00 AM',
@@ -15,7 +18,43 @@ const timeIntervals = ['7:00 AM',
     '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'
 ];
 
-const TimeTableColumn = ({events, isTime}: Props) => {
+// Reutnrs a pair with hours
+function convertToHours(time: string): number {
+    const [hour, minute] = time.split(':');
+    const minutes = parseInt(minute.replace(/[^0-9]/g, ''));
+
+    let hours = parseInt(hour);
+    hours = time.includes('PM') ? hours + 12 :  hours;
+
+    return hours + minutes/60;
+}
+
+const calculateHeightOfCourse = (event: Event, calendarInterval: {startTime: number, endTime: number} = {startTime: 7, endTime: 23}, blockSize: number = 32) => {
+    const startHours = convertToHours(event.startTime);
+    const endHours = convertToHours(event.endTime);
+
+    console.log(startHours);
+    console.log(endHours);
+
+    const yPosition = Math.max(0, (startHours - calendarInterval.startTime) * blockSize);
+    let height = (endHours-startHours)*blockSize;
+    height = Math.min(height, (calendarInterval.endTime - calendarInterval.startTime) * blockSize - yPosition);
+
+    return [yPosition, height];
+}
+
+// {
+//     id: '1',
+//     title: 'COMP 4001',
+//     startTime: '10:00 AM',
+//     endTime: '9:00 AM',
+//     day: 'Saturday'
+// }
+
+const TimeTableColumn = ({events, isTime, day}: Props) => {
+    const currentEvents = events.filter(event => event.day === day);
+    console.log('Current events: ' + currentEvents);
+
     if (isTime) {
         return <div className={classes.TimeTableColumn} style={{borderRight: 'black 1px solid'}}>
             {timeIntervals.map((time) => <TimeTableCell text={time}/>)}
@@ -23,7 +62,12 @@ const TimeTableColumn = ({events, isTime}: Props) => {
     } else {
         return <div className={classes.TimeTableColumn}>
             {timeIntervals.map((time) => <TimeTableCell/>)}
-            <DrawCourses/>
+            {
+                currentEvents.map(event => {
+                    const dim = calculateHeightOfCourse(event);
+                    return (<DrawCourses start={dim[0]} end={dim[1]}/>)
+                })
+            }
         </div>;
     }
 }
