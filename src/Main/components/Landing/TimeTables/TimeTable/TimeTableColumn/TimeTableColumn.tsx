@@ -18,13 +18,13 @@ const timeIntervals = ['7:00 AM',
     '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'
 ];
 
-// Reutnrs a pair with hours
+// Return a pair with hours.
 function convertToHours(time: string): number {
     const [hour, minute] = time.split(':');
     const minutes = parseInt(minute.replace(/[^0-9]/g, ''));
 
     let hours = parseInt(hour);
-    hours = time.includes('PM') ? hours + 12 :  hours;
+    hours = time.includes('PM') ? hours + 12 : hours;
 
     return hours + minutes/60;
 }
@@ -38,7 +38,9 @@ const calculateHeightOfCourse = (event: Event, calendarInterval: {startTime: num
 
     const yPosition = Math.max(0, (startHours - calendarInterval.startTime) * blockSize);
     let height = (endHours-startHours)*blockSize;
-    height = Math.min(height, (calendarInterval.endTime - calendarInterval.startTime) * blockSize - yPosition);
+
+    const maximumAllowedHeightForThisStartTime = (calendarInterval.endTime - calendarInterval.startTime) * blockSize - yPosition;
+    height = Math.min(height, maximumAllowedHeightForThisStartTime);
 
     return [yPosition, height];
 }
@@ -54,6 +56,8 @@ const calculateHeightOfCourse = (event: Event, calendarInterval: {startTime: num
 const TimeTableColumn = ({events, isTime, day}: Props) => {
     const currentEvents = events.filter(event => event.day === day);
     console.log('Current events: ' + currentEvents);
+    const blockSize = 32;
+    const calendarInterval = {startTime: 7, endTime: 23};
 
     if (isTime) {
         return <div className={classes.TimeTableColumn} style={{borderRight: 'black 1px solid'}}>
@@ -61,10 +65,10 @@ const TimeTableColumn = ({events, isTime, day}: Props) => {
         </div>;
     } else {
         return <div className={classes.TimeTableColumn}>
-            {timeIntervals.map((time) => <TimeTableCell/>)}
+            {timeIntervals.map((time, index) => <TimeTableCell key={index}/>)}
             {
                 currentEvents.map(event => {
-                    const dim = calculateHeightOfCourse(event);
+                    const dim = calculateHeightOfCourse(event, calendarInterval, blockSize);
                     return (<DrawCourses start={dim[0]} end={dim[1]}/>)
                 })
             }
