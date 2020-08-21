@@ -9,6 +9,7 @@ export interface Event {
     startTime: string;
     endTime: string;
     day: string;
+    title: string;
 }
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 const TimeTableBody = ({events}: Props) => (
     <div className={classes.TimeTableBody}>
         <TimeTableColumn events={events} isTime  day=''/>
-        {headers.map((day) => <TimeTableColumn events={events} day={day}/>)}
+        {headers.map((day) => <TimeTableColumn events={events} day={day} />)}
     </div>
 )
 

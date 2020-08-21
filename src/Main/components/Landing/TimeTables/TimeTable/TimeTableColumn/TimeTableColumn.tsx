@@ -69,7 +69,7 @@ const TimeTableColumn = ({events, isTime, day}: Props) => {
             {
                 currentEvents.map(event => {
                     const dim = calculateHeightOfCourse(event, calendarInterval, blockSize);
-                    return (<DrawCourses start={dim[0]} end={dim[1]}/>)
+                    return (<DrawCourses event={event} start={dim[0]} end={dim[1]}/>)
                 })
             }
         </div>;
