@@ -3,8 +3,6 @@ import styles from './CourseSearch.module.css';
 import {List} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import Course from "./Course/Course";
-import {withFirebase} from "../../Firebase";
-import Firebase from "../../Firebase";
 import {Droppable} from "react-beautiful-dnd";
 
 const useStyles = makeStyles({
@@ -13,10 +11,6 @@ const useStyles = makeStyles({
         overflowY: 'scroll'
     }
 });
-
-interface Props {
-    firebase: Firebase;
-}
 
 interface CourseModel {
     CRN: string;
@@ -36,43 +30,13 @@ interface CourseModel {
     index: number;
 }
 
-interface State {
+interface Props {
     courses: CourseModel[];
     loading: boolean;
 }
 
-const CourseSearch = ({firebase}: Props) => {
-    const [state, setState] = useState<State>({
-        courses: [],
-        loading: true,
-    });
-
+const CourseSearch = ({courses, loading}: Props) => {
     const classes = useStyles();
-
-    useEffect(() => {
-        // @ts-ignore
-        firebase.getCourses().on('value', snapshot => {
-            const coursesObject = snapshot.val();
-
-            if (coursesObject) {
-                const courseList = Object.keys(coursesObject).map(key => ({
-                    ...coursesObject[key],
-                    uid: key,
-                }));
-
-                setState({
-                    courses: courseList,
-                    loading: false,
-                });
-
-            } else {
-                setState({
-                    courses: [],
-                    loading: false,
-                });
-            }
-        });
-    }, []);
 
     return (
         <Droppable droppableId="course-search-id">
@@ -83,7 +47,7 @@ const CourseSearch = ({firebase}: Props) => {
                       {...provided.droppableProps}
                 >
                     {
-                        state.courses.map((course: CourseModel, index) => {
+                        courses.map((course: CourseModel, index) => {
                             course.index = index;
                         return (
                             <Course data={course}/>
@@ -94,4 +58,4 @@ const CourseSearch = ({firebase}: Props) => {
         </Droppable>);
 }
 
-export default withFirebase(CourseSearch);
+export default CourseSearch;
