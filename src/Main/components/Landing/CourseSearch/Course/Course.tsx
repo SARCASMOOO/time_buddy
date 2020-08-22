@@ -1,28 +1,6 @@
 import React from "react";
 import {ListItem, ListItemText, makeStyles} from "@material-ui/core";
-
-const useStyles = makeStyles({
-    root: {
-        border: '1px solid black',
-        boxShadow: '1px 1px 1px grey',
-        color: 'white',
-        cursor: 'default',
-        webkitUserSelect: 'none',
-        mozUserSelect: 'none',
-        msUserSelect: 'none',
-        oUserSelect: 'none',
-        userSelect: 'none',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'start'
-    },
-    primary: {
-        color: 'white'
-    },
-    secondary: {
-        color: 'white'
-    }
-});
+import {Draggable} from "react-beautiful-dnd";
 
 const useListStyles = makeStyles({
     primary: {
@@ -32,7 +10,6 @@ const useListStyles = makeStyles({
         color: 'white'
     }
 });
-
 
 interface CourseModel {
     CRN: string;
@@ -49,6 +26,7 @@ interface CourseModel {
     Subject: string;
     Title: string;
     uid: string;
+    index: number;
 }
 
 interface Props {
@@ -67,18 +45,53 @@ const getBackgroundColor = (status: string) => {
 }
 
 const Course = ({data}: Props) => {
+    const bgColor = getBackgroundColor(data.Status);
+
+    const useStyles = makeStyles({
+        root: {
+            border: '1px solid black',
+            boxShadow: '1px 1px 1px grey',
+            color: 'white',
+            cursor: 'default',
+            webkitUserSelect: 'none',
+            mozUserSelect: 'none',
+            msUserSelect: 'none',
+            oUserSelect: 'none',
+            userSelect: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'start',
+            backgroundColor: bgColor
+        }
+    });
+
     const classes = useStyles();
     const itemListClasses = useListStyles();
-    const bgColour = getBackgroundColor(data.Status);
+
+    const sec1 = 'Days: ' + data.Days + ', Time: ' + data.StartTime + ' - ' + data.EndTime;
+    const sec2 = data.Schedule + ', CRN: ' + data.CRN + ', Credits(' + data.Credits + ')';
+
+    const disableDrag = (data.Status === 'Registration Closed');
 
     return (
-        <ListItem classes={classes} style={{backgroundColor: bgColour}}>
-            <ListItemText classes={itemListClasses} primary={data.Status} />
-            <ListItemText classes={itemListClasses} primary={data.Title + ', ' + data.Subject}/>
-            <ListItemText classes={itemListClasses} secondary={'Days: ' + data.Days + ', Time: ' + data.StartTime + ' - ' + data.EndTime}/>
-            <ListItemText classes={itemListClasses} secondary={'Instructor: ' + data.Instructor}/>
-            <ListItemText classes={itemListClasses} secondary={data.Schedule + ', CRN: ' + data.CRN + ', Credits(' + data.Credits + ')'}/>
-        </ListItem>);
+        <Draggable draggableId={data.uid}
+                   index={data.index}
+                   isDragDisabled={disableDrag}>
+            {(provided) => (
+                <ListItem
+                    key={data.uid}
+                    classes={classes}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    innerRef={provided.innerRef}>
+                    <ListItemText classes={itemListClasses} primary={data.Status}/>
+                    <ListItemText classes={itemListClasses} primary={data.Title + ', ' + data.Subject}/>
+                    <ListItemText classes={itemListClasses} secondary={sec1}/>
+                    <ListItemText classes={itemListClasses} secondary={'Instructor: ' + data.Instructor}/>
+                    <ListItemText classes={itemListClasses} secondary={sec2}/>
+                </ListItem>)
+            }
+        </Draggable>);
 }
 
 export default Course;

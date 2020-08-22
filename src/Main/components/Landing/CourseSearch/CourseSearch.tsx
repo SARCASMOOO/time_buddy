@@ -5,6 +5,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Course from "./Course/Course";
 import {withFirebase} from "../../Firebase";
 import Firebase from "../../Firebase";
+import {Droppable} from "react-beautiful-dnd";
 
 const useStyles = makeStyles({
     CourseSearch: {
@@ -32,6 +33,7 @@ interface CourseModel {
     Subject: string;
     Title: string;
     uid: string;
+    index: number;
 }
 
 interface State {
@@ -48,8 +50,6 @@ const CourseSearch = ({firebase}: Props) => {
     const classes = useStyles();
 
     useEffect(() => {
-        console.log('mounted');
-
         // @ts-ignore
         firebase.getCourses().on('value', snapshot => {
             const coursesObject = snapshot.val();
@@ -75,13 +75,23 @@ const CourseSearch = ({firebase}: Props) => {
     }, []);
 
     return (
-        <List disablePadding aria-label="secondary mailbox folders" className={classes.CourseSearch}>
-            {state.courses.map((course: CourseModel) => {
-                return (
-                    <Course data={course}/>
-                );
-            })}
-        </List>);
+        <Droppable droppableId="course-search-id">
+            {(provided) => (
+                <List disablePadding aria-label="secondary mailbox folders"
+                      className={classes.CourseSearch}
+                      innerRef={provided.innerRef}
+                      {...provided.droppableProps}
+                >
+                    {
+                        state.courses.map((course: CourseModel, index) => {
+                            course.index = index;
+                        return (
+                            <Course data={course}/>
+                        );
+                    })}
+                    {provided.placeholder}
+                </List>)}
+        </Droppable>);
 }
 
 export default withFirebase(CourseSearch);

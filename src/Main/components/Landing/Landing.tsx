@@ -1,8 +1,7 @@
-import React, {Fragment} from "react";
-import {DragDropContext, Droppable} from 'react-beautiful-dnd';
+import React from "react";
+import {DragDropContext} from 'react-beautiful-dnd';
 import CourseSearch from "./CourseSearch/CourseSearch";
 import TimeTables from "./TimeTables/TimeTables";
-import styles from './Landing.module.css';
 import {Card, CardHeader} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -29,20 +28,38 @@ const useCardStyles = makeStyles({
     }
 });
 
+const onDragStart = () => {
+    console.log('Drag start');
+}
+
+const onDragEnd = () => {
+    console.log('Drag end');
+}
+
+const onDragUpdate = () => {
+    console.log('Drag Update');
+}
+
 const Landing = () => {
     const classes = useStyles();
     const classesCard = useStylesCard();
     const cardStyles = useCardStyles();
-    return (<>
-        <h1>Schedules</h1>
-        <div className={classes.Landing}>
-            <TimeTables/>
-            <Card variant="outlined" classes={cardStyles}>
-                <CardHeader title='Courses' classes={classesCard}/>
-                <CourseSearch/>
-            </Card>
-        </div>
-    </>);
+    return (
+        <DragDropContext
+            onDragStart={onDragStart}
+            onDragUpdate={onDragEnd}
+            onDragEnd={onDragUpdate}
+        >
+            <h1>Schedules</h1>
+            <div className={classes.Landing}>
+                <TimeTables/>
+                <Card variant="outlined" classes={cardStyles}>
+                    <CardHeader title='Courses' classes={classesCard}/>
+                    <CourseSearch/>
+                </Card>
+            </div>
+        </DragDropContext>)
+        ;
 }
 
 export default Landing;
