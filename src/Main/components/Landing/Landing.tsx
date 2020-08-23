@@ -119,7 +119,7 @@ const Landing = ({firebase}: Props) => {
             } else {
                 setState({
                     courses: [],
-                    loading: false,
+                    loading: true,
                 });
             }
         });

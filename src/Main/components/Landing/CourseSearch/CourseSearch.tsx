@@ -3,6 +3,7 @@ import styles from './CourseSearch.module.css';
 import {List} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import Course from "./Course/Course";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
     CourseSearch: {
@@ -37,7 +38,7 @@ interface Props {
 const CourseSearch = ({courses, loading}: Props) => {
     const classes = useStyles();
 
-    return (
+    const content = loading ? (<CircularProgress size='4em' className={styles.Spinner}/>) :  (
         <List disablePadding aria-label="secondary mailbox folders"
               className={classes.CourseSearch}>
             {
@@ -49,6 +50,8 @@ const CourseSearch = ({courses, loading}: Props) => {
                 })
             }
         </List>)
+
+    return content;
 }
 
 export default CourseSearch;
