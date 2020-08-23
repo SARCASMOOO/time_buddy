@@ -3,7 +3,6 @@ import styles from './CourseSearch.module.css';
 import {List} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import Course from "./Course/Course";
-import {Droppable} from "react-beautiful-dnd";
 
 const useStyles = makeStyles({
     CourseSearch: {
@@ -39,23 +38,17 @@ const CourseSearch = ({courses, loading}: Props) => {
     const classes = useStyles();
 
     return (
-        <Droppable droppableId="course-search-id">
-            {(provided) => (
-                <List disablePadding aria-label="secondary mailbox folders"
-                      className={classes.CourseSearch}
-                      innerRef={provided.innerRef}
-                      {...provided.droppableProps}
-                >
-                    {
-                        courses.map((course: CourseModel, index) => {
-                            course.index = index;
-                        return (
-                            <Course data={course}/>
-                        );
-                    })}
-                    {provided.placeholder}
-                </List>)}
-        </Droppable>);
+        <List disablePadding aria-label="secondary mailbox folders"
+              className={classes.CourseSearch}>
+            {
+                courses.map((course: CourseModel, index) => {
+                    course.index = index;
+                    return (
+                        <Course data={course}/>
+                    );
+                })
+            }
+        </List>)
 }
 
 export default CourseSearch;

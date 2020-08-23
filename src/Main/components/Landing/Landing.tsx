@@ -126,11 +126,7 @@ const Landing = ({firebase}: Props) => {
     }, []);
 
     return (
-        <DragDropContext
-            onDragStart={onDragStart}
-            onDragUpdate={onDragEnd}
-            onDragEnd={onDragUpdate}
-        >
+        <>
             <h1>Schedules</h1>
             <div className={classes.Landing}>
                 <TimeTables/>
@@ -139,8 +135,7 @@ const Landing = ({firebase}: Props) => {
                     <CourseSearch courses={state.courses} loading={state.loading}/>
                 </Card>
             </div>
-        </DragDropContext>)
-        ;
+        </>);
 }
 
 export default withFirebase(Landing);

@@ -1,6 +1,5 @@
 import React from "react";
 import {ListItem, ListItemText, makeStyles} from "@material-ui/core";
-import {Draggable} from "react-beautiful-dnd";
 
 const useListStyles = makeStyles({
     primary: {
@@ -74,24 +73,15 @@ const Course = ({data}: Props) => {
     const disableDrag = (data.Status === 'Registration Closed');
 
     return (
-        <Draggable draggableId={data.uid}
-                   index={data.index}
-                   isDragDisabled={disableDrag}>
-            {(provided) => (
-                <ListItem
-                    key={data.uid}
-                    classes={classes}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    innerRef={provided.innerRef}>
-                    <ListItemText classes={itemListClasses} primary={data.Status}/>
-                    <ListItemText classes={itemListClasses} primary={data.Title + ', ' + data.Subject}/>
-                    <ListItemText classes={itemListClasses} secondary={sec1}/>
-                    <ListItemText classes={itemListClasses} secondary={'Instructor: ' + data.Instructor}/>
-                    <ListItemText classes={itemListClasses} secondary={sec2}/>
-                </ListItem>)
-            }
-        </Draggable>);
+        <ListItem
+            key={data.uid}
+            classes={classes}>
+            <ListItemText classes={itemListClasses} primary={data.Status}/>
+            <ListItemText classes={itemListClasses} primary={data.Title + ', ' + data.Subject}/>
+            <ListItemText classes={itemListClasses} secondary={sec1}/>
+            <ListItemText classes={itemListClasses} secondary={'Instructor: ' + data.Instructor}/>
+            <ListItemText classes={itemListClasses} secondary={sec2}/>
+        </ListItem>);
 }
 
 export default Course;
