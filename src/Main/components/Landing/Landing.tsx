@@ -54,6 +54,7 @@ interface CourseModel {
 
 interface State {
     courses: CourseModel[];
+    addedCourses: CourseModel[];
     loading: boolean;
 }
 
@@ -65,6 +66,7 @@ const Landing = ({firebase}: Props) => {
     const [state, setState] = useState<State>({
         courses: [],
         loading: true,
+        addedCourses: []
     });
 
     useEffect(() => {
@@ -81,29 +83,44 @@ const Landing = ({firebase}: Props) => {
                 setState({
                     courses: courseList,
                     loading: false,
+                    addedCourses: state.addedCourses
                 });
 
             } else {
                 setState({
                     courses: [],
                     loading: true,
+                    addedCourses: state.addedCourses
                 });
             }
         });
     }, []);
 
-    const removeCourse = (id: string) => {
-        console.log('Remove course: ' + id);
+    const addCourse = (course: CourseModel) => {
+        if(state.addedCourses.includes(course)) {
+            console.log('Course already exists.');
+            return
+        }
+
+        const newAddedCourses = [...state.addedCourses];
+        newAddedCourses.push(course);
+
+        console.log('Adding course: ' + course.uid);
+        setState({
+            courses: state.courses,
+            loading: state.loading,
+            addedCourses: newAddedCourses
+        });
     }
 
     return (
         <>
             <h1>Schedules</h1>
             <div className={classes.Landing}>
-                <TimeTables/>
+                <TimeTables courses={state.addedCourses}/>
                 <Card variant="outlined" classes={cardStyles}>
                     <CardHeader title='Courses' classes={classesCard}/>
-                    <CourseSearch  removeCourse={removeCourse} courses={state.courses} loading={state.loading}/>
+                    <CourseSearch  addCourse={addCourse} courses={state.courses} loading={state.loading}/>
                 </Card>
             </div>
         </>);

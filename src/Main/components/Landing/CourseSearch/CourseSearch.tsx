@@ -34,10 +34,10 @@ interface CourseModel {
 interface Props {
     courses: CourseModel[];
     loading: boolean;
-    removeCourse: (id: string) => void;
+    addCourse: (course: CourseModel) => void;
 }
 
-const CourseSearch = ({courses, loading, removeCourse}: Props) => {
+const CourseSearch = ({courses, loading, addCourse}: Props) => {
     const classes = useStyles();
 
     const content = loading ? (<CircularProgress size='4em' className={styles.Spinner}/>) :  (
@@ -47,7 +47,7 @@ const CourseSearch = ({courses, loading, removeCourse}: Props) => {
                 courses.map((course: CourseModel, index) => {
                     course.index = index;
                     return (
-                        <Course removeCourse={removeCourse} data={course}/>
+                        <Course addCourse={addCourse} data={course}/>
                     );
                 })
             }

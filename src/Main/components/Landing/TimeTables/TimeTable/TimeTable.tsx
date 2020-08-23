@@ -5,31 +5,19 @@ import TimeTableHeader from "./TimeTableHeader/TimeTableHeader";
 import TimeTableBody from './TimeTableBody/TimeTableBody';
 import TimeTableFooter from "./TimeTableFooter/TImeTableFooter";
 
-const events = [
-    {
-        id: '1',
-        title: 'COMP 4001',
-        startTime: '9:00 AM',
-        endTime: '1:00 PM',
-        day: 'Saturday'
-    },
-    {
-        id: '2',
-        title: 'COMP 4001',
-        startTime: '1:30 PM',
-        endTime: '9:00 PM',
-        day: 'Saturday'
-    },
-    {
-        id: '3',
-        title: 'COMP 4001',
-        startTime: '1:30 PM',
-        endTime: '9:00 PM',
-        day: 'Sunday'
-    }
-];
+interface TableEvent {
+    id: string
+    title: string;
+    startTime: string;
+    endTime: string;
+    day: string;
+}
 
-const TimeTable = () => {
+interface Props {
+    events: TableEvent[];
+}
+
+const TimeTable = ({events}: Props) => {
     return (
         <div className={classes.TimeTable}>
             <TimeTableHeader/>

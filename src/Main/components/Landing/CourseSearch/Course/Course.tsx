@@ -31,7 +31,7 @@ interface CourseModel {
 
 interface Props {
     data: CourseModel,
-    removeCourse: (id: string) => void;
+    addCourse: (course: CourseModel) => void;
 }
 
 const getBackgroundColor = (status: string) => {
@@ -45,7 +45,7 @@ const getBackgroundColor = (status: string) => {
     }
 }
 
-const Course = ({data, removeCourse}: Props) => {
+const Course = ({data, addCourse}: Props) => {
     const bgColor = getBackgroundColor(data.Status);
 
     const useStyles = makeStyles({
@@ -76,6 +76,7 @@ const Course = ({data, removeCourse}: Props) => {
     const courseStyle = disableDrag ? '' : styles.Button;
     return (
         <ListItem
+            onClick={() => {addCourse(data)}}
             className={courseStyle}
             key={data.uid}
             classes={classes}>

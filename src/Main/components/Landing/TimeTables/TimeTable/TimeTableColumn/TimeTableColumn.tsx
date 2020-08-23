@@ -8,7 +8,7 @@ import { Event } from '../TimeTableBody/TimeTableBody';
 interface Props {
     events: Event[];
     isTime?: boolean;
-    day: string;
+    day: string | null;
 }
 
 const timeIntervals = ['7:00 AM',
@@ -58,6 +58,8 @@ const TimeTableColumn = ({events, isTime, day}: Props) => {
     console.log('Current events: ' + currentEvents);
     const blockSize = 32;
     const calendarInterval = {startTime: 7, endTime: 23};
+
+    if(!day) return <></>;
 
     if (isTime) {
         return <div className={classes.TimeTableColumn} style={{borderRight: 'black 1px solid'}}>
