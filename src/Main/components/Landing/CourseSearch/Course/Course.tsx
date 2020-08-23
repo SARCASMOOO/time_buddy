@@ -1,5 +1,6 @@
 import React from "react";
 import {ListItem, ListItemText, makeStyles} from "@material-ui/core";
+import styles from './Course.module.css';
 
 const useListStyles = makeStyles({
     primary: {
@@ -29,7 +30,8 @@ interface CourseModel {
 }
 
 interface Props {
-    data: CourseModel
+    data: CourseModel,
+    removeCourse: (id: string) => void;
 }
 
 const getBackgroundColor = (status: string) => {
@@ -43,7 +45,7 @@ const getBackgroundColor = (status: string) => {
     }
 }
 
-const Course = ({data}: Props) => {
+const Course = ({data, removeCourse}: Props) => {
     const bgColor = getBackgroundColor(data.Status);
 
     const useStyles = makeStyles({
@@ -71,9 +73,10 @@ const Course = ({data}: Props) => {
     const sec2 = data.Schedule + ', CRN: ' + data.CRN + ', Credits(' + data.Credits + ')';
 
     const disableDrag = (data.Status === 'Registration Closed');
-
+    const courseStyle = disableDrag ? '' : styles.Button;
     return (
         <ListItem
+            className={courseStyle}
             key={data.uid}
             classes={classes}>
             <ListItemText classes={itemListClasses} primary={data.Status}/>

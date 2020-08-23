@@ -8,7 +8,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles({
     CourseSearch: {
         height: '70vh',
-        overflowY: 'scroll'
+        overflowY: 'scroll',
+        backgroundColor: '#02baa8'
     }
 });
 
@@ -33,9 +34,10 @@ interface CourseModel {
 interface Props {
     courses: CourseModel[];
     loading: boolean;
+    removeCourse: (id: string) => void;
 }
 
-const CourseSearch = ({courses, loading}: Props) => {
+const CourseSearch = ({courses, loading, removeCourse}: Props) => {
     const classes = useStyles();
 
     const content = loading ? (<CircularProgress size='4em' className={styles.Spinner}/>) :  (
@@ -45,7 +47,7 @@ const CourseSearch = ({courses, loading}: Props) => {
                 courses.map((course: CourseModel, index) => {
                     course.index = index;
                     return (
-                        <Course data={course}/>
+                        <Course removeCourse={removeCourse} data={course}/>
                     );
                 })
             }
