@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {DragDropContext} from 'react-beautiful-dnd';
+import {DragDropContext, DropResult} from 'react-beautiful-dnd';
 import CourseSearch from "./CourseSearch/CourseSearch";
 import TimeTables from "./TimeTables/TimeTables";
 import {Card, CardHeader} from "@material-ui/core";
@@ -30,27 +30,6 @@ const useCardStyles = makeStyles({
     }
 });
 
-const onDragStart = () => {
-    console.log('Drag start');
-}
-
-const onDragEnd = (result: any) => {
-    const {destination, source, draggableId} = result;
-
-    if (!destination) return;
-
-    if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-    ) {
-        return;
-    }
-}
-
-const onDragUpdate = () => {
-    console.log('Drag Update');
-}
-
 interface Props {
     firebase: Firebase;
 }
@@ -79,6 +58,39 @@ interface State {
 }
 
 const Landing = ({firebase}: Props) => {
+    // FIXME: This function needs to reorder the
+    //  courses when a user drops a course in the course search.
+    const onDragStart = () => {
+        console.log('Drag start');
+    }
+
+    const onDragEnd = (result: DropResult) => {
+        const {destination, source, draggableId} = result;
+
+        if (!destination) return;
+
+        if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index) {
+            return;
+        }
+
+        const newCourses = [...state.courses];
+        const newCourse = newCourses[source.index];
+        newCourse.uid = draggableId;
+        newCourses.splice(source.index, 1);
+        newCourses.splice(destination.index, 0, newCourse);
+
+        // setState({
+        //     courses: newCourses,
+        //     loading: false
+        // });
+    }
+
+    const onDragUpdate = () => {
+        console.log('Drag Update');
+    }
+
     const classes = useStyles();
     const classesCard = useStylesCard();
     const cardStyles = useCardStyles();
