@@ -27,7 +27,7 @@ interface CourseModel {
 interface Props {
     events: Event[];
     isTime?: boolean;
-    day: string | null;
+    day: string;
     removeCourse: (id: string) => void;
 }
 
@@ -74,7 +74,8 @@ const calculateHeightOfCourse = (event: Event, calendarInterval: {startTime: num
 // }
 
 const TimeTableColumn = ({events, isTime, day, removeCourse}: Props) => {
-    const currentEvents = events.filter(event => event.day === day);
+
+    const currentEvents = events.filter(event => event.day.replace(/ /g,'') === day.replace(/ /g,''));
     console.log('Current events: ' + currentEvents);
     const blockSize = 32;
     const calendarInterval = {startTime: 7, endTime: 23};

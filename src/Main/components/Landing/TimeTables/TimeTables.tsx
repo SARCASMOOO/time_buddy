@@ -63,11 +63,6 @@ interface TableEvent {
 class TimeTables extends Component<Props, State> {
     createEvent = (course: CourseModel) => {
         const days = course.Days.split(',');
-        let day = '';
-
-        if(days && days.length > 0) {
-            day = days[0];
-        }
 
         const events: TableEvent[] = [];
 
