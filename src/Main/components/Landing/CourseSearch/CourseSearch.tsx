@@ -41,6 +41,7 @@ interface Props {
 
 const CourseSearch = ({courses, loading, addCourse}: Props) => {
     const classes = useStyles();
+    //const value = useContext(SchoolContext);
     const [uni, _] = useContext(UniversityContext);
 
     if (loading) return (<CircularProgress size='4em' className={styles.Spinner}/>);

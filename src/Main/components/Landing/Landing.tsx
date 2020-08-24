@@ -71,6 +71,7 @@ const Landing = ({firebase}: Props) => {
     });
 
     useEffect(() => {
+        const schoolId = 'carleton';
         // @ts-ignore
         firebase.getCourses().on('value', snapshot => {
             const coursesObject = snapshot.val();
@@ -81,9 +82,7 @@ const Landing = ({firebase}: Props) => {
                     uid: key,
                 }));
 
-                console.log('Course list', courseList);
-                console.log('Uni is', uni);
-                courseList = courseList.filter((course, index) => course.schoolid === uni);
+                courseList = courseList.filter((course, index) => course.schoolid === schoolId);
 
                 console.log('here');
                 setState({
@@ -100,7 +99,7 @@ const Landing = ({firebase}: Props) => {
                 });
             }
         });
-    }, [uni]);
+    }, []);
 
     const removeCourse = (id: string) => {
         let newCourses = [...state.addedCourses];
