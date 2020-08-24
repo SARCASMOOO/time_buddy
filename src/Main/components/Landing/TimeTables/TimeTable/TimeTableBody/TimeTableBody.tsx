@@ -37,7 +37,7 @@ interface Props {
 
 const TimeTableBody = ({events, removeCourse}: Props) => (
     <div className={classes.TimeTableBody}>
-        <TimeTableColumn removeCourse={removeCourse} events={events} isTime  day=''/>
+        <TimeTableColumn removeCourse={removeCourse} events={events} isTime  day='none'/>
         {headers.map((day) => <TimeTableColumn removeCourse={removeCourse}  events={events} day={day} />)}
     </div>
 )
