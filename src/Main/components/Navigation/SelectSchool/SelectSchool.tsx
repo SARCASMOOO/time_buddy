@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {Button} from '@material-ui/core';
 import Search from './Search/Search';
+import {UniversityContext} from "./globalState";
 
 function getModalStyle() {
     const top = 30;
@@ -31,11 +32,25 @@ interface Props {
 
 const SchoolContext = React.createContext({});
 
+function useUpdateUniName(schoolSearch: any) {
+    const [_, setUni] = useContext(UniversityContext);
+
+    useEffect(() => {
+        if (schoolSearch && schoolSearch.school) {
+            const universityName = schoolSearch.school.label as string;
+            setUni(universityName);
+            console.log(universityName);
+        }
+    }, [schoolSearch]);
+
+}
+
 const SelectSchool = () => {
-    const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = useState(false);
     const [schoolSearch, setSchool] = useState<any>({selectedSchool: null});
+    const classes = useStyles();
+    useUpdateUniName(schoolSearch);
 
 
     const handleOpen = () => {

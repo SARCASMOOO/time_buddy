@@ -16,6 +16,7 @@ import Navigation from "../Navigation/Navigation";
 // Constants
 import * as ROUTES from '../../constants/routes';
 import withAuthentication from "../Session/withAuthentication";
+import {UniWrapper} from "../Navigation/SelectSchool/globalState";
 
 interface Props {}
 interface State {}
@@ -23,6 +24,7 @@ interface State {}
 class App extends Component<Props, State> {
     render() {
         return (
+            <UniWrapper>
                 <Layout>
                     <Router>
                         <Navigation/>
@@ -40,6 +42,7 @@ class App extends Component<Props, State> {
                         <footer style={{backgroundColor: '#02baa8'}} />
                     </Router>
                 </Layout>
+            </UniWrapper>
         );
     }
 }

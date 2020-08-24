@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import CourseSearch from "./CourseSearch/CourseSearch";
 import TimeTables from "./TimeTables/TimeTables";
 import {Card, CardHeader} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {withFirebase} from "../Firebase";
 import Firebase from "../Firebase";
+import {UniversityContext} from "../Navigation/SelectSchool/globalState";
 
 const useStyles = makeStyles({
     Landing: {
@@ -61,6 +62,7 @@ const Landing = ({firebase}: Props) => {
     const classes = useStyles();
     const classesCard = useStylesCard();
     const cardStyles = useCardStyles();
+    const [uni, _] = useContext(UniversityContext);
 
     const [state, setState] = useState<State>({
         courses: [],
