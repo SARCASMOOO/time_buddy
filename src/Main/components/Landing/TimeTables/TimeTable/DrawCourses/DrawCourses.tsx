@@ -39,6 +39,7 @@ export interface Event {
 }
 
 const DrawCourses = ({start, end, event, removeCourse}: Props) => {
+    console.log('I am draw courses.');
     return (
         <div
             className={styles.Button}

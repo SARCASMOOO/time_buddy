@@ -69,24 +69,33 @@ class TimeTables extends Component<Props, State> {
             day = days[0];
         }
 
-        return {
-            id: course.uid,
-            title: course.Title,
-            startTime: course.StartTime,
-            endTime: course.EndTime,
-            day: day
-        };
+        const events: TableEvent[] = [];
+
+        days.forEach((day: string) => {
+            events.push(
+                {
+                    id: course.uid,
+                    title: course.Title,
+                    startTime: course.StartTime,
+                    endTime: course.EndTime,
+                    day: day
+                }
+            )
+        });
+
+        return events;
     }
 
     transformCourseToEvent = (courses: CourseModel[]) => {
         const events: TableEvent[] = [];
-
+        console.log('Transforming courses to events.')
         courses.forEach((course) => {
-            const event = this.createEvent(course);
-            if(event.day) {
-                events.push(event);
-            }
-        })
+            const multipleEvents = this.createEvent(course);
+            multipleEvents.forEach((event) => {
+                if(event.day) events.push(event)
+            })
+        });
+
         console.log('Courses: ', courses.length);
         console.log(events);
         return events;

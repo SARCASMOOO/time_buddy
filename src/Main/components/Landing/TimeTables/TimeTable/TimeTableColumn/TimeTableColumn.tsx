@@ -78,7 +78,7 @@ const TimeTableColumn = ({events, isTime, day, removeCourse}: Props) => {
     console.log('Current events: ' + currentEvents);
     const blockSize = 32;
     const calendarInterval = {startTime: 7, endTime: 23};
-
+    console.log('I am time table column');
     if(!day) return <></>;
 
     if (isTime) {
