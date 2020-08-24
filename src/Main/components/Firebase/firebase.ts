@@ -72,7 +72,9 @@ class Firebase {
             }));
     }
 
-    getCourses = () => this.db.ref('courses');
+    getCourses = () => {
+        return this.db.ref('courses');
+    }
 }
 
 export default Firebase;

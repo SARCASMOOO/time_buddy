@@ -4,6 +4,7 @@ import {List} from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
 import Course from "./Course/Course";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {SchoolContext} from '../../Navigation/SelectSchool/SelectSchool';
 
 const useStyles = makeStyles({
     CourseSearch: {
@@ -40,18 +41,26 @@ interface Props {
 const CourseSearch = ({courses, loading, addCourse}: Props) => {
     const classes = useStyles();
 
-    const content = loading ? (<CircularProgress size='4em' className={styles.Spinner}/>) :  (
-        <List disablePadding aria-label="secondary mailbox folders"
-              className={classes.CourseSearch}>
-            {
-                courses.map((course: CourseModel, index) => {
-                    course.index = index;
-                    return (
-                        <Course addCourse={addCourse} data={course}/>
-                    );
-                })
-            }
-        </List>)
+    const content = loading ? (<CircularProgress size='4em' className={styles.Spinner}/>) : (
+        <SchoolContext.Consumer>
+            {value => {
+                if(value === 'Select School') {
+                    console.log('The school is not selected.');
+                }
+                console.log('The school is not selected.');
+                return (<List disablePadding aria-label="secondary mailbox folders"
+                      className={classes.CourseSearch}>
+                    {
+                        courses.map((course: CourseModel, index) => {
+                            course.index = index;
+                            return (
+                                <Course addCourse={addCourse} data={course}/>
+                            );
+                        })
+                    }
+                </List>)
+            }}
+        </SchoolContext.Consumer>)
 
     return content;
 }

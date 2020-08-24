@@ -69,16 +69,20 @@ const Landing = ({firebase}: Props) => {
     });
 
     useEffect(() => {
+        const schoolId = 'carleton';
         // @ts-ignore
         firebase.getCourses().on('value', snapshot => {
             const coursesObject = snapshot.val();
 
             if (coursesObject) {
-                const courseList = Object.keys(coursesObject).map(key => ({
+                let courseList = Object.keys(coursesObject).map(key => ({
                     ...coursesObject[key],
                     uid: key,
                 }));
 
+                courseList = courseList.filter((course, index) => course.schoolid === schoolId);
+
+                console.log('here');
                 setState({
                     courses: courseList,
                     loading: false,
@@ -96,7 +100,6 @@ const Landing = ({firebase}: Props) => {
     }, []);
 
     const removeCourse = (id: string) => {
-        console.log('Removing course.')
         let newCourses = [...state.addedCourses];
         let indexToRemove = null;
 
@@ -119,14 +122,12 @@ const Landing = ({firebase}: Props) => {
 
     const addCourse = (course: CourseModel) => {
         if(state.addedCourses.includes(course)) {
-            console.log('Course already exists.');
             return
         }
 
         const newAddedCourses = [...state.addedCourses];
         newAddedCourses.push(course);
 
-        console.log('Adding course: ' + course.uid);
         setState({
             courses: state.courses,
             loading: state.loading,

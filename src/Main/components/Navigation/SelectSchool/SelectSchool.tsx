@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Button } from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import Search from './Search/Search';
 
 function getModalStyle() {
     const top = 30;
     return {
         top: `${top}%`,
-        margin:'auto',
+        margin: 'auto',
         width: "400px"
     };
 }
@@ -29,6 +29,8 @@ interface Props {
     db: any;
 }
 
+const SchoolContext = React.createContext({});
+
 const SelectSchool = () => {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
@@ -36,9 +38,13 @@ const SelectSchool = () => {
     const [schoolSearch, setSchool] = useState<any>({selectedSchool: null});
 
 
-    const handleOpen = () => {setOpen(true);};
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
-    const handleClose = () => {setOpen(false);};
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
@@ -51,31 +57,34 @@ const SelectSchool = () => {
     );
 
     let schoolText = 'Select School';
-    if(schoolSearch && schoolSearch.school) {
+    if (schoolSearch && schoolSearch.school) {
         schoolText = schoolSearch.school.label;
     }
 
     return (
-        <div>
-
-            <Button onClick={handleOpen} style={{color: "white"}} variant="outlined">
-                {schoolText}
-            </Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                style={{
-                    display:'flex',
-                    alignItems:'center',
-                    justifyContent:'center',
-                }}
-            >
-                {body}
-            </Modal>
-        </div>
-    );
+        <SchoolContext.Provider value={schoolText}>
+            <div>
+                <Button onClick={handleOpen} style={{color: "white"}} variant="outlined">
+                    {schoolText}
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    {body}
+                </Modal>
+            </div>
+        </SchoolContext.Provider>
+    )
+        ;
 }
 
+export {SchoolContext};
 export default SelectSchool;
