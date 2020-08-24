@@ -12,14 +12,33 @@ export interface Event {
     title: string;
 }
 
-interface Props {
-    events: Event[];
+interface CourseModel {
+    CRN: string;
+    Credits: number;
+    Days: string;
+    EndTime: string;
+    Instructor: string;
+    Notes: string;
+    Schedule: string;
+    Section: string;
+    "Section Information": string;
+    StartTime: string;
+    Status: string;
+    Subject: string;
+    Title: string;
+    uid: string;
+    index: number;
 }
 
-const TimeTableBody = ({events}: Props) => (
+interface Props {
+    events: Event[];
+    removeCourse: (id: string) => void;
+}
+
+const TimeTableBody = ({events, removeCourse}: Props) => (
     <div className={classes.TimeTableBody}>
-        <TimeTableColumn events={events} isTime  day=''/>
-        {headers.map((day) => <TimeTableColumn events={events} day={day} />)}
+        <TimeTableColumn removeCourse={removeCourse} events={events} isTime  day=''/>
+        {headers.map((day) => <TimeTableColumn removeCourse={removeCourse}  events={events} day={day} />)}
     </div>
 )
 

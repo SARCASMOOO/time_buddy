@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {DragDropContext, DropResult} from 'react-beautiful-dnd';
 import CourseSearch from "./CourseSearch/CourseSearch";
 import TimeTables from "./TimeTables/TimeTables";
 import {Card, CardHeader} from "@material-ui/core";
@@ -96,6 +95,28 @@ const Landing = ({firebase}: Props) => {
         });
     }, []);
 
+    const removeCourse = (id: string) => {
+        console.log('Removing course.')
+        let newCourses = [...state.addedCourses];
+        let indexToRemove = null;
+
+        newCourses.forEach((course, index) => {
+            if(course.uid === id) {
+                indexToRemove = index;
+            }
+        });
+
+        if(indexToRemove != null && indexToRemove > -1) {
+            newCourses.splice(indexToRemove, 1);
+        }
+
+        setState({
+            courses: state.courses,
+            loading: state.loading,
+            addedCourses: newCourses
+        });
+    }
+
     const addCourse = (course: CourseModel) => {
         if(state.addedCourses.includes(course)) {
             console.log('Course already exists.');
@@ -117,7 +138,7 @@ const Landing = ({firebase}: Props) => {
         <>
             <h1>Schedules</h1>
             <div className={classes.Landing}>
-                <TimeTables courses={state.addedCourses}/>
+                <TimeTables removeCourse={removeCourse} courses={state.addedCourses}/>
                 <Card variant="outlined" classes={cardStyles}>
                     <CardHeader title='Courses' classes={classesCard}/>
                     <CourseSearch  addCourse={addCourse} courses={state.courses} loading={state.loading}/>

@@ -5,10 +5,30 @@ import DrawCourses from '../DrawCourses/DrawCourses';
 
 import { Event } from '../TimeTableBody/TimeTableBody';
 
+interface CourseModel {
+    CRN: string;
+    Credits: number;
+    Days: string;
+    EndTime: string;
+    Instructor: string;
+    Notes: string;
+    Schedule: string;
+    Section: string;
+    "Section Information": string;
+    StartTime: string;
+    Status: string;
+    Subject: string;
+    Title: string;
+    uid: string;
+    index: number;
+}
+
+
 interface Props {
     events: Event[];
     isTime?: boolean;
     day: string | null;
+    removeCourse: (id: string) => void;
 }
 
 const timeIntervals = ['7:00 AM',
@@ -53,7 +73,7 @@ const calculateHeightOfCourse = (event: Event, calendarInterval: {startTime: num
 //     day: 'Saturday'
 // }
 
-const TimeTableColumn = ({events, isTime, day}: Props) => {
+const TimeTableColumn = ({events, isTime, day, removeCourse}: Props) => {
     const currentEvents = events.filter(event => event.day === day);
     console.log('Current events: ' + currentEvents);
     const blockSize = 32;
@@ -71,7 +91,7 @@ const TimeTableColumn = ({events, isTime, day}: Props) => {
             {
                 currentEvents.map(event => {
                     const dim = calculateHeightOfCourse(event, calendarInterval, blockSize);
-                    return (<DrawCourses event={event} start={dim[0]} end={dim[1]}/>)
+                    return (<DrawCourses removeCourse={removeCourse} event={event} start={dim[0]} end={dim[1]}/>)
                 })
             }
         </div>;

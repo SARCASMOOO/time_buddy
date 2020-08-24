@@ -21,6 +21,7 @@ interface CourseModel {
 
 interface Props {
     courses: CourseModel[];
+    removeCourse: (id: string) => void;
 }
 
 interface State {
@@ -96,7 +97,7 @@ class TimeTables extends Component<Props, State> {
         const events = this.transformCourseToEvent(courses);
 
         return (<div style={{width: '85%'}}>
-            <Timetable events={events}/>
+            <Timetable removeCourse={this.props.removeCourse} events={events}/>
         </div>);
     }
 };

@@ -1,0 +1,8 @@
+.Button:hover {
+    background-color: #ba1900 !important;
+    transform: scale(0.97);
+}
+
+.Button:active {
+    transform: scale(0.95);
+}

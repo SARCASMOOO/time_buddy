@@ -4,6 +4,25 @@ import classes from './TimeTable.module.css';
 import TimeTableHeader from "./TimeTableHeader/TimeTableHeader";
 import TimeTableBody from './TimeTableBody/TimeTableBody';
 import TimeTableFooter from "./TimeTableFooter/TImeTableFooter";
+import TimeTableColumn from "./TimeTableColumn/TimeTableColumn";
+
+interface CourseModel {
+    CRN: string;
+    Credits: number;
+    Days: string;
+    EndTime: string;
+    Instructor: string;
+    Notes: string;
+    Schedule: string;
+    Section: string;
+    "Section Information": string;
+    StartTime: string;
+    Status: string;
+    Subject: string;
+    Title: string;
+    uid: string;
+    index: number;
+}
 
 interface TableEvent {
     id: string
@@ -15,13 +34,14 @@ interface TableEvent {
 
 interface Props {
     events: TableEvent[];
+    removeCourse: (id: string) => void;
 }
 
-const TimeTable = ({events}: Props) => {
+const TimeTable = ({events, removeCourse}: Props) => {
     return (
         <div className={classes.TimeTable}>
             <TimeTableHeader/>
-            <TimeTableBody events={events}/>
+            <TimeTableBody removeCourse={removeCourse} events={events}/>
             <TimeTableFooter/>
         </div>
     )
