@@ -4,16 +4,16 @@
   
 
   <p align="center">
-  <img src="screenshots/main.gif" width="30%"/>
+  <img src="screenshots/main.gif" width="80%"/>
   </p>
 
 ## Screenshots
 
   <p align="center">
-  <img src="screenshots/home.png" width="30%"/> <img src="screenshots/add_school.png" width="30%"/> <img src="screenshots/settings.png" width="30%"/>
+  <img src="screenshots/home.png" width="40%"/> <img src="screenshots/add_school.png" width="40%"/>
   </p>
   <p align="center">
-  <img src="screenshots/admin.png" width="30%"/>
+  <img src="screenshots/settings.png" width="40%"/> <img src="screenshots/admin.png" width="40%"/>
   </p>
 
 ## Designs
