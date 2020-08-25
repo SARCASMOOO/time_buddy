@@ -2,6 +2,7 @@
 
   Visit: <a href="https://time-buddy-f7b1a.web.app/">www.timebuddy.ca</a>
   
+  **Languages**: Typescript, React, MaterialUI
 
   <p align="center">
   <img src="screenshots/main.gif" width="80%"/>
@@ -21,10 +22,10 @@
   - Adobe XD wireframes
 
   <p align="center">
-  <img src="screenshots/wireframe.png" width="60%"/>
+  <img src="screenshots/wireframe.png" width="70%"/>
   </p>
 
-## Technology
+## Tech stack
 
  - React, Typescript
  - HTML, CSS, Material-UI
