@@ -1,5 +1,7 @@
 # TIME BUDDY
 
+Time buddy is productivity app designed to help save you time. Students are busy enough, to help take off some of the stress I built time buddy. Time buddy will help you easily build your time table for school without having to constantly go back and fourth between pages.
+
   Visit: <a href="https://time-buddy-f7b1a.web.app/">www.timebuddy.ca</a>
   
   **Languages**: Typescript, React, MaterialUI
