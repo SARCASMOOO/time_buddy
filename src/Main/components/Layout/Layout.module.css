@@ -4,6 +4,6 @@
 
 .Layout {
     display: grid;
-    height: 100vh;
-    grid-template-rows: 1fr 12fr 1fr;
+    min-height: 100vh;
+    grid-template-rows: 1rem auto 2rem;
 }
