@@ -14,7 +14,7 @@
     &__open {
       padding-right: 1.4rem;
       .dropdown__bar_first {
-        transform: rotate(45deg) translateX(1rem);
+        transform: rotate(45deg) translateX(10px);
       }
 
       .dropdown__bar_second {
@@ -22,7 +22,7 @@
       }
 
       .dropdown__bar_third {
-        transform: rotate(-45deg) translateX(1rem);
+        transform: rotate(-45deg) translateX(10px);
       }
     }
 
@@ -45,5 +45,10 @@
     width: 100vw;
     left: 0;
     background-color: var(--bg-grey-medium);
+    padding: 2rem;
+
+    & > * {
+      list-style: none;
+    }
   }
 }

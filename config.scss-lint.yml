@@ -15,13 +15,13 @@
       padding-right: 1.4rem; }
       /* line 16, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
       .dropdown__icon__open .dropdown__bar_first {
-        transform: rotate(45deg) translateX(1rem); }
+        transform: rotate(45deg) translateX(10px); }
       /* line 20, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
       .dropdown__icon__open .dropdown__bar_second {
         visibility: hidden; }
       /* line 24, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
       .dropdown__icon__open .dropdown__bar_third {
-        transform: rotate(-45deg) translateX(1rem); }
+        transform: rotate(-45deg) translateX(10px); }
     /* line 29, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
     .dropdown__icon:hover {
       transform: scale(1.1); }
@@ -38,4 +38,8 @@
     top: 5rem;
     width: 100vw;
     left: 0;
-    background-color: var(--bg-grey-medium); }
+    background-color: var(--bg-grey-medium);
+    padding: 2rem; }
+    /* line 50, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+    .dropdown__nav > * {
+      list-style: none; }
