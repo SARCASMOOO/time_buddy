@@ -7,9 +7,23 @@ import classes from './Navigation.module.scss';
 // Components
 import Dropdown from "./Dropdown/Dropdown";
 
+const NavItems = () => (
+    <nav className={classes.navigation__nav_items}>
+        {['Login', 'Sign Up', 'Time Table'].map((navItem: string) => <h1 key={navItem}>{navItem}</h1>)}
+    </nav>
+);
+
 const NavList = () => {
-    const Items = ['Login', 'Sign Up', 'Time Table22'].map((navItem: string) => <h1 key={navItem}>{navItem}</h1>);
-    return (<div>{Items}</div>);
+    return (
+        window.innerWidth < 400 ? (
+            <div className={classes.navigation__dropdown}>
+                <Dropdown/>
+            </div>
+        ) : (
+            <div className={classes.navigation__desktop}>
+                <NavItems/>
+            </div>
+        ));
 }
 
 const Navigation = (props: {}) => (
@@ -17,10 +31,7 @@ const Navigation = (props: {}) => (
         <div className={classes.navigation__logo}>
             <h2>Time Buddy</h2>
         </div>
-        <div className={classes.navigation__dropdown}>
-            {/* FIXME: This doesn't work if you start on desktop then resize down. */}
-            {window.innerWidth < 460 ? <Dropdown/> : <NavList/>}
-        </div>
+        <NavList/>
     </div>);
 
 export default pure(Navigation);

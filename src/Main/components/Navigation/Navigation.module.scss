@@ -12,7 +12,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    flex-basis: 20rem;
   }
 
   &__dropdown {
@@ -27,5 +26,29 @@
 
   &__logo {
     font-size: 1.5rem;
+  }
+
+  &__desktop {
+    flex-basis: 60vw;
+  }
+
+  &__nav_items {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: all .2s;
+
+    & > * {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      &:hover {
+        transform: scale(0.90) translateY(5px);
+        border-bottom: 5px solid grey;
+      }
+    }
   }
 }
