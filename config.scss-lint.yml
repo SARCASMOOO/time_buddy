@@ -23,24 +23,26 @@
       text-align: center; }
   /* line 27, src/Main/components/Navigation/Navigation.module.scss */
   .navigation__logo {
-    font-size: 1.5rem; }
-  /* line 31, src/Main/components/Navigation/Navigation.module.scss */
+    font-size: 1.5rem;
+    margin-left: 3rem; }
+  /* line 32, src/Main/components/Navigation/Navigation.module.scss */
   .navigation__desktop {
-    flex-basis: 60vw; }
-  /* line 35, src/Main/components/Navigation/Navigation.module.scss */
+    flex-basis: 60vw;
+    max-width: 600px; }
+  /* line 37, src/Main/components/Navigation/Navigation.module.scss */
   .navigation__nav_items {
     display: flex;
     width: 100%;
     height: 100%;
     transition: all .2s; }
-    /* line 41, src/Main/components/Navigation/Navigation.module.scss */
+    /* line 43, src/Main/components/Navigation/Navigation.module.scss */
     .navigation__nav_items > * {
       height: 100%;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-around; }
-      /* line 48, src/Main/components/Navigation/Navigation.module.scss */
+      /* line 50, src/Main/components/Navigation/Navigation.module.scss */
       .navigation__nav_items > *:hover {
         transform: scale(0.9) translateY(5px);
         border-bottom: 5px solid grey; }
