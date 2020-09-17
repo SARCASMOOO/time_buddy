@@ -1,6 +1,9 @@
 .navigation {
   background-color: var(--bg-grey-medium);
   display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 5rem;
   justify-content: space-between;
   color: white;
 
@@ -13,6 +16,13 @@
   }
 
   &__dropdown {
+    display: flex;
+    align-items: stretch;
+
+    & > * {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   &__logo {

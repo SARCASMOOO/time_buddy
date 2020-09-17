@@ -1,16 +1,41 @@
-/* line 1, src/Main/components/Navigation/Navigation.module.scss */
-.navigation {
-  background-color: var(--bg-grey-medium);
+/* line 1, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+.dropdown {
   display: flex;
-  justify-content: space-between;
-  color: white; }
-  /* line 7, src/Main/components/Navigation/Navigation.module.scss */
-  .navigation > * {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-basis: 20rem; }
-  /* line 18, src/Main/components/Navigation/Navigation.module.scss */
-  .navigation__logo {
-    font-size: 1.5rem; }
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; }
+  /* line 8, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+  .dropdown__icon {
+    width: 5rem;
+    margin-right: 3rem;
+    transition: all .2s;
+    padding: 0.8rem; }
+    /* line 14, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+    .dropdown__icon__open {
+      padding-right: 1.4rem; }
+      /* line 16, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+      .dropdown__icon__open .dropdown__bar_first {
+        transform: rotate(45deg) translateX(1rem); }
+      /* line 20, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+      .dropdown__icon__open .dropdown__bar_second {
+        visibility: hidden; }
+      /* line 24, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+      .dropdown__icon__open .dropdown__bar_third {
+        transform: rotate(-45deg) translateX(1rem); }
+    /* line 29, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+    .dropdown__icon:hover {
+      transform: scale(1.1); }
+      /* line 31, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+      .dropdown__icon:hover > *:not(last-child) {
+        transition: all .2s;
+        margin-bottom: 0.52rem; }
+    /* line 37, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+    .dropdown__icon > *:not(last-child) {
+      margin-bottom: 0.5rem; }
+  /* line 42, src/Main/components/Navigation/Dropdown/Dropdown.module.scss */
+  .dropdown__nav {
+    position: fixed;
+    top: 5rem;
+    width: 100vw;
+    left: 0;
+    background-color: var(--bg-grey-medium); }
