@@ -1,9 +1,5 @@
-:root {
-    /*font-family: 'Roboto', sans-serif;*/
-}
-
 .Layout {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 1rem auto 2rem;
+    grid-template-rows: 5rem auto 10rem;
 }
