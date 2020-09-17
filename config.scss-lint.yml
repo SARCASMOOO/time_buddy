@@ -1,56 +1,16 @@
-/* line 8, src/index.scss */
-* {
-  margin: 0;
-  padding: 0; }
-
-/* line 13, src/index.scss */
-*,
-*::before,
-*::after {
-  box-sizing: inherit; }
-
-/* line 19, src/index.scss */
-html {
-  box-sizing: border-box; }
-  @media only screen and (min-width: 65rem) {
-    /* line 19, src/index.scss */
-    html {
-      font-size: 90%; } }
-  @media only screen and (max-width: 65rem) {
-    /* line 19, src/index.scss */
-    html {
-      font-size: 70%; } }
-  @media only screen and (max-width: 56.25em) {
-    /* line 19, src/index.scss */
-    html {
-      font-size: 62.5%; } }
-  @media only screen and (max-width: 34rem) {
-    /* line 19, src/index.scss */
-    html {
-      font-size: 60%; } }
-  @media only screen and (max-width: 20rem) {
-    /* line 19, src/index.scss */
-    html {
-      font-size: 50%; } }
-
-/* line 46, src/index.scss */
-body {
-  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  line-height: 1.6;
-  min-height: 100vh;
-  width: 100%; }
-
-/* line 59, src/index.scss */
-.container {
-  max-width: 120rem;
-  margin: 8rem auto;
-  min-height: 50rem; }
-  @media only screen and (min-width: 65rem) {
-    /* line 59, src/index.scss */
-    .container {
-      margin: 0;
-      max-width: 100%;
-      width: 100%; } }
+/* line 1, src/Main/components/Navigation/Navigation.module.scss */
+.navigation {
+  background-color: var(--bg-grey-medium);
+  display: flex;
+  justify-content: space-between;
+  color: white; }
+  /* line 7, src/Main/components/Navigation/Navigation.module.scss */
+  .navigation > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-basis: 20rem; }
+  /* line 18, src/Main/components/Navigation/Navigation.module.scss */
+  .navigation__logo {
+    font-size: 1.5rem; }
