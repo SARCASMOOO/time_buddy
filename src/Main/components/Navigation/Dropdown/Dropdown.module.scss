@@ -1,3 +1,9 @@
+$bp-lg: 65rem;    // 1100px
+$bp-md: 56.25em; // 600px
+$bp-sm: 34rem; // 460px
+$bp-xs: 20rem; // 320px
+
+
 .dropdown {
   display: flex;
   flex-direction: column;
@@ -51,4 +57,14 @@
       list-style: none;
     }
   }
+
+  @media only screen and (min-width: $bp-sm) {
+    .dropdown__icon {
+      //visibility: hidden;
+    }
+    .dropdown__nav {
+      //visibility: hidden;
+    }
+  }
 }
+
