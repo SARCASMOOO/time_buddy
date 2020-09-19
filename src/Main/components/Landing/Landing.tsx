@@ -4,7 +4,10 @@ import TimeTables from "./TimeTables/TimeTables";
 import {withFirebase} from "../Firebase";
 import Firebase from "../Firebase";
 import {UniversityContext} from "../Navigation/SelectSchool/globalState";
+
+// Components
 import HeroSection from "./HeroSection/HeroSection";
+import ProductivitySection from "./ProductivitySection/ProductivitySection";
 
 // Styles
 // TODO: Add this to the rest of the document but not the header.
@@ -45,7 +48,7 @@ const Landing = ({firebase}: Props) => {
     return (
         <>
             <HeroSection/>
-            <div>Testing</div>
+            <ProductivitySection/>
         </>
     );
 }
