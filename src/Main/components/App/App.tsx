@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './App.module.scss';
 
 // Components
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -18,16 +18,19 @@ import * as ROUTES from '../../constants/routes';
 import withAuthentication from "../Session/withAuthentication";
 import {UniWrapper} from "../Navigation/SelectSchool/globalState";
 
-interface Props {}
-interface State {}
+// Styles
+import classes from './App.module.scss';
 
-class App extends Component<Props, State> {
+class App extends Component<{}, {}> {
     render() {
         return (
             <UniWrapper>
                 <Layout>
                     <Router>
                         <Navigation/>
+                        <main>
+                            <LandingPage/>
+                        </main>
                         {/*<main>*/}
                         {/*    <Switch>*/}
                         {/*        <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>*/}

@@ -1,11 +1,16 @@
 import React from "react";
-import {pure} from 'recompose';
 
 // Styles
 import classes from './Navigation.module.scss';
 
 // Components
 import Dropdown from "./Dropdown/Dropdown";
+
+// Hooks
+import useResponsive from "../../Hooks/useResponsive";
+
+// Models
+import {ScreenType} from '../../Hooks/useResponsive';
 
 const NavItems = () => (
     <nav className={classes.navigation__nav_items}>
@@ -14,17 +19,23 @@ const NavItems = () => (
 );
 
 const NavList = () => {
-    return (
-        window.innerWidth < 400 ? (
+    const screenType = useResponsive();
+
+    if (screenType === ScreenType.mobile) {
+        return (
             <div className={classes.navigation__dropdown}>
                 <Dropdown/>
             </div>
-        ) : (
-            <div className={classes.navigation__desktop}>
-                <NavItems/>
-            </div>
-        ));
+        )
+    }
+
+    return (
+        <div className={classes.navigation__desktop}>
+            <NavItems/>
+        </div>
+    )
 }
+
 
 const Navigation = (props: {}) => (
     <div className={classes.navigation}>
@@ -34,7 +45,5 @@ const Navigation = (props: {}) => (
         <NavList/>
     </div>);
 
-export default pure(Navigation);
-// TODO: Make a react hook to monitor screen width to choose
-//  which component to render based on screen size.
+export default Navigation;
 
