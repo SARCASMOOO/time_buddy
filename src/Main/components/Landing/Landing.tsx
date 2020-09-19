@@ -44,7 +44,7 @@ interface State {
 const Landing = ({firebase}: Props) => {
     return (
         <>
-            {/*<HeroSection/>*/}
+            <HeroSection/>
             <div>Testing</div>
         </>
     );
