@@ -1,0 +1,62 @@
+.information_section {
+  $light-green: #4ECB40;
+  $dark-green: #43573D;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 3rem 3rem 3rem 10rem;
+  font-size: 1rem;
+  color: white;
+  background-image: linear-gradient(to bottom, rgba($light-green, .8), rgba($dark-green, .8));
+
+  @media only screen and (max-width: 600px) {
+    font-size: .5rem;
+    padding: 2rem 2rem 2rem 6rem;
+  }
+
+  @media only screen and (max-width: 400px) {
+    padding: 1rem 1rem 1rem 4rem;
+  }
+
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    @media only screen and (max-width: 400px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.card {
+  &__title {
+    font-size: 2.5rem;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 1.5rem;
+    }
+
+    @media only screen and (max-width: 400px) {
+      font-size: 1rem;
+    }
+  }
+  
+  &__message {
+    font-size: 2rem;
+    width: 80vw;
+    max-width: 1000px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 1rem;
+    }
+
+    @media only screen and (max-width: 400px) {
+      font-size: .5rem;
+    }
+  }
+}

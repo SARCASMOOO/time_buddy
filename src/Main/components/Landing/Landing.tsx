@@ -10,6 +10,7 @@ import HeroSection from "./HeroSection/HeroSection";
 import ProductivitySection from "./ProductivitySection/ProductivitySection";
 import GetStartedSection from "./GetStartedSection/GetStartedSection";
 import MoreInfoSection from "./MoreInfoSection/MoreInfoSection";
+import InformationSection from "./InformationSection/InformatonSection";
 
 // Styles
 // TODO: Add this to the rest of the document but not the header.
@@ -53,6 +54,7 @@ const Landing = ({firebase}: Props) => {
             <GetStartedSection/>
             <ProductivitySection/>
             <MoreInfoSection/>
+            <InformationSection/>
         </>
     );
 }
