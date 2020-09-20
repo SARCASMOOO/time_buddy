@@ -6,7 +6,7 @@ import classes from './ProductivitySection.module.scss';
 function ProductivitySection(props: {}) {
     return (
         <section className={classes.productivity__back_ground}>
-            <img src={image} className={classes.productivity__img} alt="Background image of productivity."/>
+            <img src={image} className={classes.productivity__img} alt="Background of productivity."/>
         </section>
     );
 }

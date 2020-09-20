@@ -8,6 +8,7 @@ import {UniversityContext} from "../Navigation/SelectSchool/globalState";
 // Components
 import HeroSection from "./HeroSection/HeroSection";
 import ProductivitySection from "./ProductivitySection/ProductivitySection";
+import GetStartedSection from "./GetStartedSection/GetStartedSection";
 
 // Styles
 // TODO: Add this to the rest of the document but not the header.
@@ -48,6 +49,7 @@ const Landing = ({firebase}: Props) => {
     return (
         <>
             <HeroSection/>
+            <GetStartedSection/>
             <ProductivitySection/>
         </>
     );
