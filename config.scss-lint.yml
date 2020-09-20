@@ -1,10 +1,13 @@
 /* line 5, src/Main/components/Landing/ProductivitySection/ProductivitySection.module.scss */
 .productivity__back_ground {
+  position: relative;
   margin-top: 10vh;
-  height: 30vh;
-  min-height: 100px;
-  max-height: 400px;
-  z-index: -1;
   background-size: cover;
   background-position: center;
-  background-image: linear-gradient(to bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../../../assets/images/land-sm.jpg); }
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+  background-image: linear-gradient(to bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)); }
+
+/* line 17, src/Main/components/Landing/ProductivitySection/ProductivitySection.module.scss */
+.productivity__img {
+  width: 100%;
+  object-fit: cover; }
