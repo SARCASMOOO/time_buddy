@@ -1,54 +1,60 @@
-/* line 1, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-.information_section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 3rem 3rem 3rem 10rem;
-  font-size: 1rem;
-  color: white;
-  background-image: linear-gradient(to bottom, rgba(78, 203, 64, 0.8), rgba(67, 87, 61, 0.8)); }
-  @media only screen and (max-width: 600px) {
-    /* line 1, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .information_section {
-      font-size: .5rem;
-      padding: 2rem 2rem 2rem 6rem; } }
-  @media only screen and (max-width: 400px) {
-    /* line 1, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .information_section {
-      padding: 1rem 1rem 1rem 4rem; } }
-  /* line 23, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-  .information_section > *:not(:last-child) {
-    margin-bottom: 5rem; }
-  /* line 28, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-  .information_section__title {
-    font-size: 3rem; }
-    @media only screen and (max-width: 400px) {
-      /* line 28, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-      .information_section__title {
-        font-size: 2rem; } }
+/* line 1, src/index.scss */
+:root {
+  --bg-grey-medium: #333333; }
 
-/* line 37, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-.card__title {
-  font-size: 2.5rem; }
-  @media only screen and (max-width: 600px) {
-    /* line 37, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .card__title {
-      font-size: 1.5rem; } }
-  @media only screen and (max-width: 400px) {
-    /* line 37, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .card__title {
-      font-size: 1rem; } }
+/* line 11, src/index.scss */
+* {
+  margin: 0;
+  padding: 0; }
 
-/* line 49, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-.card__message {
-  font-size: 2rem;
-  width: 80vw;
-  max-width: 1000px; }
-  @media only screen and (max-width: 600px) {
-    /* line 49, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .card__message {
-      font-size: 1rem; } }
-  @media only screen and (max-width: 400px) {
-    /* line 49, src/Main/components/Landing/InformationSection/InformationSection.module.scss */
-    .card__message {
-      font-size: .5rem; } }
+/* line 16, src/index.scss */
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+/* line 22, src/index.scss */
+html {
+  box-sizing: border-box; }
+  @media only screen and (min-width: 65rem) {
+    /* line 22, src/index.scss */
+    html {
+      font-size: 90%; } }
+  @media only screen and (max-width: 65rem) {
+    /* line 22, src/index.scss */
+    html {
+      font-size: 70%; } }
+  @media only screen and (max-width: 56.25em) {
+    /* line 22, src/index.scss */
+    html {
+      font-size: 62.5%; } }
+  @media only screen and (max-width: 34rem) {
+    /* line 22, src/index.scss */
+    html {
+      font-size: 60%; } }
+  @media only screen and (max-width: 20rem) {
+    /* line 22, src/index.scss */
+    html {
+      font-size: 50%; } }
+
+/* line 49, src/index.scss */
+body {
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  width: 100%; }
+
+/* line 62, src/index.scss */
+.container {
+  max-width: 120rem;
+  margin: 8rem auto;
+  min-height: 50rem; }
+  @media only screen and (min-width: 65rem) {
+    /* line 62, src/index.scss */
+    .container {
+      margin: 0;
+      max-width: 100%;
+      width: 100%; } }
